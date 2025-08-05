@@ -1,0 +1,28 @@
+== 1.0.4 : 2023-12-15 ==
+- Imp: Footer credit improvised.
+- Fix: Pagination dynamic issue fix.
+- Fix: Theme dashboard compatible for child theme.
+- Imp: Design improvement done.
+- Imp: Some coding improvement done.
+
+== 1.0.3 : 2023-12-13 ==
+- Fix: Design issue fix.
+- Fix: Nav dynamic issue fix.
+- Imp: Thumb size improvised for grid & list layouts.
+
+== 1.0.2 : 2023-12-06 ==
+- New: Upgrade to articlewave pro link added in customizer.
+- New: Added pro theme link.
+- New: Added free vs pro table in dashboard.
+- New: Demo import supports for child theme.
+- Fix: Archive title prefix post count fix.
+
+== 1.0.1: 2023-11-29 ==
+- New: Theme URI updated.
+- Imp: Slider responsive height improvised.
+- Fix: Dynamic color for meta fixed.
+Meta tags design edits done.
+Margin added for primary menu.
+
+== 1.0.0: 2023-11-28 ==
+- New: Submitted on trac.

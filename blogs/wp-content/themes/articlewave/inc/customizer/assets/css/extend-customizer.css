@@ -1,0 +1,122 @@
+/**
+ Style for Extend Customizer Panel
+ *
+ * @package Articlewave
+ */
+
+.in-sub-panel #customize-theme-controls .customize-pane-child.current-panel-parent,
+#customize-theme-controls .customize-pane-child.current-section-parent {
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+/**
+ * Nested Customizer Section CSS
+ */
+#customize-controls .control-section.control-section-articlewave_section .accordion-section-title {
+  color: #555d66;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  border-left: 4px solid #fff;
+  -webkit-transition: .15s color ease-in-out, .15s background-color ease-in-out, .15s border-color ease-in-out;
+  transition: .15s color ease-in-out, .15s background-color ease-in-out, .15s border-color ease-in-out;
+}
+
+#customize-controls .control-section.control-section-articlewave_section .accordion-section-title:after {
+  color: #a0a5aa;
+}
+
+#customize-controls .control-section.control-section-articlewave_section .accordion-section-title:hover,
+#customize-controls .control-section.control-section-articlewave_section .accordion-section-title:focus,
+#customize-controls .control-section .accordion-section-title:focus,
+#customize-controls .control-section .accordion-section-title:hover,
+#customize-controls .control-section:hover>.accordion-section-title {
+  color: #212121;
+  background: #f3f3f5;
+  border-left-color: #4ABBD5;
+}
+
+#customize-controls .control-section.control-section-articlewave_section .accordion-section-title:hover:after,
+#customize-outer-theme-controls .control-section .accordion-section-title:focus::after,
+#customize-outer-theme-controls .control-section .accordion-section-title:hover::after,
+#customize-outer-theme-controls .control-section.open .accordion-section-title::after,
+#customize-outer-theme-controls .control-section:hover>.accordion-section-title::after,
+#customize-theme-controls .control-section .accordion-section-title:focus::after,
+#customize-theme-controls .control-section .accordion-section-title:hover::after,
+#customize-theme-controls .control-section:hover>.accordion-section-title::after {
+  color: #4ABBD5;
+}
+
+#customize-controls .control-section-articlewave_section .accordion-section {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+#customize-controls .customize-control-zavia-editor .wp-editor-tools .wp-editor-container textarea {
+  width: 100%;
+}
+
+#customize-control-articlewave_sticky_header_sidebar_option {
+  margin-top: 12px;
+}
+
+#accordion-panel-articlewave_panel_footer {
+  margin-bottom: 20px;
+}
+
+/**---------------------------------------------
+Upsell section
+ ---------------------------------------------*/
+
+#customize-controls .control-section-upsell .accordion-section-title:hover,
+#customize-controls .control-section-upsell .accordion-section-title:focus {
+    background-color: #fff;
+}
+
+.control-section-mt-upsell .accordion-section-title .button {
+    margin-top:  -4px;
+    font-weight: 700;
+    margin-left: 8px;
+    background: #00d2ff;
+    background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);
+    background: linear-gradient(to right, #3a7bd5, #00d2ff);
+    color: #fff;
+    border:none;
+}
+
+.control-section-mt-upsell .accordion-section-title .button:hover {
+    background: #1FA3E8;
+    background:linear-gradient(#1FA3E8,#1FA3E8);
+}
+.customize-control-mt-upgrade {
+    background: #fff;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.customize-control-title.upgrade-title i {
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.upgrade-description {
+    margin: 5px 0 10px;
+}
+
+.mt-upgrade-btn {
+    background: #2271b1;
+    color: #fff;
+    padding: 7px 10px;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 3px;
+    line-height: 19px;
+    text-transform: capitalize;
+}
+
+.mt-upgrade-btn:hover {
+    background: #135E96;
+    color: #fff;
+}

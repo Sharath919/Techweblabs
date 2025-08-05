@@ -1,0 +1,51 @@
+/**
+ * Custom Style for Typography Control
+ *
+ * @package Articlewave
+ */
+.customize-control-mt-typography .typo-buttonset {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.customize-control-mt-typography .typo-buttonset .switch-label {
+	background: rgba(0, 0, 0, 0.1);
+	border: 1px rgba(0, 0, 0, 0.1);
+	color: #555d66;
+	margin: 0;
+	text-align: center;
+	padding: 0.5em 1em;
+	flex-grow: 1;
+}
+
+.customize-control-mt-typography .typo-buttonset .switch-input:checked+.switch-label {
+	background-color: #00a0d2;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.customize-control-mt-typography .typo-buttonset .switch-input {
+	display: none;
+}
+
+.customize-control-mt-typography ul li {
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.customize-control-mt-typography ul li .customize-control-title {
+	width: 100%;
+}
+
+.customize-control-mt-typography .select2-container {
+	width: 350px !important;
+}
+
+.customize-control-mt-typography .select2-selection__arrow {
+	height: 40px !important;
+}
+
+.customize-control-mt-typography .select2-container .select2-selection--single {
+	padding: 4px 0;
+	height: 40px;
+}

@@ -1,0 +1,585 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mystery Themes Demo Importer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-23 11:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.3; wp-5.4.1"
+
+#: admin/partials/mtdi-import-popup.php:174
+msgid " Demo Imported successfully!!"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:714
+#, php-format
+msgid "%1$s &#8220;%2$s&#8221; already exists."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:340
+msgid "- Select -"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1272
+#, php-format
+msgid ""
+"A new version of this importer is available. Please update to version %s to "
+"ensure compatibility with newer export files."
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:76
+msgid "Activate"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:79
+msgid "Activate Now"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:78 admin/partials/mtdi-import-popup.php:92
+msgid "Activated"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:76
+msgid "Activating"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:178
+msgid "All done."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:83
+msgid "Are you sure to import demo content?"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:324
+msgid "as a new user:"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:273
+msgid "Assign Authors"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:332
+msgid "assign posts to an existing user:"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:51
+#, php-format
+msgid "By %1$s Mystery Themes %2$s"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:909
+msgid "Cart"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:913
+msgid "Checkout"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1289
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:170
+msgid "Close"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:190
+msgid "Customize"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:128
+msgid "Customize Site"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:82
+msgid "Demo has been successfully installed"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:178
+msgid "Demo imported successfully in you site"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:75
+msgid "Demo Importing..."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:73
+msgid "Demo Installed"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-parsers.php:57
+msgid ""
+"Details are shown above. The importer will now try again with a different "
+"parser..."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:1362
+msgid "Documentation"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:289
+msgid "Download and import file attachments"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:156
+msgid "Enter desktop preview mode"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:162
+msgid "Enter mobile preview mode"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:159
+msgid "Enter tablet preview mode"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:415
+msgid "fail"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:402
+#, php-format
+msgid ""
+"Failed to create new user for %s. Their posts will be attributed to the "
+"current user."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:579
+#: includes/wp-importers/class-mtdi-importer.php:828
+#, php-format
+msgid "Failed to import %1$s %2$s"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:788
+#, php-format
+msgid "Failed to import %1$s &#8220;%2$s&#8221;"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:674
+#, php-format
+msgid "Failed to import &#8220;%1$s&#8221;: Invalid post type %2$s"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:244
+#, php-format
+msgid ""
+"Failed to import author %s. Their posts will be attributed to the current "
+"user."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:462
+#, php-format
+msgid "Failed to import category %s"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:516
+#, php-format
+msgid "Failed to import post tag %s"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1049
+msgid "Fetching attachments is not enabled"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:1363
+msgid "Free Support"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:178
+msgid "Have fun!"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1288
+msgid ""
+"Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import "
+"the posts, pages, comments, custom fields, categories, and tags into this "
+"site."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://mysterythemes.com/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/mysterythemes-demo-importer/"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:276
+#, php-format
+msgid ""
+"If a new user is created by WordPress, a new password will be randomly "
+"generated and the new user&#8217;s role will be set as %s. Manually changing "
+"the new user&#8217;s details will be necessary."
+msgstr ""
+
+#: admin/partials/mtdi-admin-demo-page.php:68
+msgid "Import"
+msgstr ""
+
+#: admin/partials/mtdi-admin-demo-page.php:67
+#, php-format
+msgid "Import %1$s"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:286
+msgid "Import Attachments"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:307
+msgid "Import author:"
+msgstr ""
+
+#: includes/wp-importers/class-widget-importer.php:35
+msgid "Import data could not be read. Please try a different file."
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:124
+#: admin/partials/mtdi-import-popup.php:127
+msgid "Import Demo Now"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1265
+msgid "Import WordPress"
+msgstr ""
+
+#: admin/partials/mtdi-admin-demo-page.php:52
+#: includes/wp-importers/class-widget-importer.php:200
+msgid "Imported"
+msgstr ""
+
+#: admin/partials/mtdi-admin-demo-page.php:51
+#, php-format
+msgid "Imported %1$s"
+msgstr ""
+
+#: includes/wp-importers/class-widget-importer.php:203
+msgid "Imported to Inactive"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:86
+#: admin/partials/mtdi-import-popup.php:122
+#: admin/partials/mtdi-import-popup.php:126
+msgid "Install & Activate"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:74
+msgid "Installing"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:77
+msgid "Installing & Activating"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:72
+msgid "Installing Demo..."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1066
+msgid "Invalid file type"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:82
+msgid "Manual install required"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:978
+#, php-format
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:971
+msgid "Menu item skipped due to missing menu slug"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:535
+msgid "Missing XML file dummy content."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:1345
+msgid "MT Demo Importer"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:917
+msgid "My Account"
+msgstr ""
+
+#. Author of the plugin
+msgid "Mystery Themes"
+msgstr ""
+
+#. %s: official Mystery themes URL
+#. Name of the plugin
+#: admin/class-mtdi-admin.php:1381 admin/partials/mtdi-admin-demo-page.php:17
+msgid "Mystery Themes Demo Importer"
+msgstr ""
+
+#: admin/partials/mtdi-admin-demo-page.php:23
+msgid "No demos are configured for this theme, please contact the theme author"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:169
+msgid "No plugin specified."
+msgstr ""
+
+#: includes/wp-importers/class-widget-importer.php:210
+msgid "No Title"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:113
+msgid ""
+"Note: If your website already has content or is already in use, we recommend "
+"you to backup your website content before attempting a full site import."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:1381
+msgid "Official Mystery Themes"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"One Click Demo Importer For Mystery Themes official themes demo content, "
+"customization options, widgets and theme settings."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:334
+msgid "or assign posts to an existing user:"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:321
+msgid "or create new user with login name:"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:363
+msgid "Plugin slug is not specified"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:364
+msgid "Plugin slug is not specified."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:329
+msgid "Plugin Successfully Activated."
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:184
+msgid ""
+"PS: We try our best to use images that are free from legal perspectives. "
+"However, we do not take any responsibiity. We strongly advise website owners "
+"to replace the images and any copyrighted media before publishing them "
+"online."
+msgstr ""
+
+#: admin/partials/mtdi-admin-demo-page.php:62
+msgid "Purchase Now"
+msgstr ""
+
+#: admin/partials/mtdi-admin-demo-page.php:61
+#, php-format
+msgid "Purchase Now %1$s"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:179
+msgid "Remember to update the passwords and roles of imported users."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1138
+msgid "Remote file is incorrect size"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1149
+#, php-format
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1123
+msgid "Remote server did not respond"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1131
+#, php-format
+msgid "Remote server returned error response %1$d %2$s"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:59
+msgid "Required Plugins"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:905
+msgid "Shop"
+msgstr ""
+
+#: includes/wp-importers/class-widget-importer.php:84
+msgid "Sidebar does not exist in theme (moving widget to Inactive)"
+msgstr ""
+
+#: includes/wp-importers/class-widget-importer.php:106
+msgid "Site does not support widget"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:83
+#, php-format
+msgid ""
+"Some plugins required manual installation. %1s zip comes with current theme "
+"bundle. Please install plugin zip in your site and reload this page for "
+"further actions."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:132
+#: includes/wp-importers/class-mtdi-importer.php:141
+#: includes/wp-importers/class-mtdi-importer.php:196
+#: includes/wp-importers/class-mtdi-importer.php:200
+#: includes/wp-importers/class-mtdi-importer.php:209
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:183
+msgid "Sorry, you are not allowed to install plugins on this site."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:375
+msgid "Sorry, you have no permission to import the demo content."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:293
+msgid "Submit"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:413
+msgid "success"
+msgstr ""
+
+#: includes/wp-importers/class-customizer-importer.php:41
+msgid ""
+"The customizer import file is not in a correct format. Please make sure to "
+"use the correct customizer import file."
+msgstr ""
+
+#: includes/wp-importers/class-customizer-importer.php:46
+#: includes/wp-importers/class-customizer-importer.php:50
+msgid ""
+"The customizer import file is not suitable for current theme. You can only "
+"import customizer settings for the same theme or a child theme."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:572
+msgid "The DAT file customizer data is missing."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:201
+#, php-format
+msgid ""
+"The export file could not be found at <code>%s</code>. It is likely that "
+"this was caused by a permissions problem."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:133
+msgid "The file does not exist, please try again."
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:61
+msgid ""
+"The following plugins are required for the theme to look exactly like the "
+"demo, so on click Import demo button, all required plugins will "
+"automatically installed and activated."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:610
+msgid "The WIE file widget content is missing."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:227
+msgid "There was an error installing plugin"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-parsers.php:55
+#: includes/wp-importers/class-mtdi-parsers.php:93
+#: includes/wp-importers/class-mtdi-parsers.php:101
+msgid "There was an error when reading this WXR file"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:137 admin/class-mtdi-admin.php:160
+msgid "This action was stopped for security purposes."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-parsers.php:106
+#: includes/wp-importers/class-mtdi-parsers.php:112
+#: includes/wp-importers/class-mtdi-parsers.php:350
+#: includes/wp-importers/class-mtdi-parsers.php:566
+msgid ""
+"This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:1381
+#, php-format
+msgid "This plugin requires %s to be activated to work."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:217
+#, php-format
+msgid ""
+"This WXR file (version %s) may not be supported by this version of the "
+"importer. Please consider updating."
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:274
+msgid ""
+"To make it easier for you to edit and save the imported content, you may "
+"want to reassign the author of the imported item to an existing user of this "
+"site. For example, you may want to import all the entries as <code>"
+"admin</code>s entries."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:270
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr ""
+
+#: admin/class-mtdi-admin.php:269
+msgid "unable_to_connect_to_filesystem"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:50
+#, php-format
+msgid "Version: %1$s"
+msgstr ""
+
+#: admin/partials/mtdi-admin-demo-page.php:75
+msgid "View Demo"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:1345
+msgid "View Demo Importer"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:1362
+msgid "View Demo Importer Documentation"
+msgstr ""
+
+#: admin/class-mtdi-admin.php:1363
+msgid "Visit Free Support Forum"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:189
+msgid "Visit Site"
+msgstr ""
+
+#: includes/wp-importers/class-widget-importer.php:141
+msgid "Widget already exists"
+msgstr ""
+
+#: admin/partials/mtdi-import-popup.php:181
+msgid ""
+"You can customize settings, modify images, text and design to make it yours!"
+msgstr ""
+
+#: includes/wp-importers/class-mtdi-importer.php:1143
+msgid "Zero size file downloaded"
+msgstr ""

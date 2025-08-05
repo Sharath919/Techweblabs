@@ -1,0 +1,38 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    
+    # Redirect URLs with a trailing slash to URLs without a trailing slash
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Rewrite rule for specific blog pages
+    RewriteRule ^blogs/(.*)$ /$1 [L,R=301]
+
+
+    RewriteRule ^full-stack-development-course-with-guaranteed-placement$ /pages/ondemand/full-stack-development.php [L]
+ # Specific rules for pages like 'about' and 'careers' if needed
+    RewriteRule ^about$ /pages/ondemand/about.php [L]
+    RewriteRule ^careers$ /pages/ondemand/careers.php [L]
+    RewriteRule ^contact$ /pages/ondemand/contact.php [L]
+   
+
+    # Custom Rewrite Rule
+    RewriteRule ^([^/]+)-([^/]+)$ /pages/ondemand/$1-$2.php [L]
+
+   
+
+
+
+
+    # Redirect to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Set the default file for directory indexes
+DirectoryIndex index.php

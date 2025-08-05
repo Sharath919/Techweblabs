@@ -1,0 +1,105 @@
+.primary-menu-wrap .nav-menu .right-menu-items, .primary-menu-wrap .menu .right-menu-items{
+	margin-right: auto;
+	display: flex;
+    flex-wrap: wrap;
+	margin-left: unset;
+}
+
+.left-menu-items{
+	margin-left: auto;
+	display: flex;
+    flex-wrap: wrap;
+	margin-right: unset;
+}
+
+.primary-menu-wrap .nav-menu .right-menu-items~.right-menu-items,
+.primary-menu-wrap .menu .right-menu-items~.right-menu-items {
+	margin-right: 0;
+}
+
+.banner-tabbed-section-wrapper .slider-section-wrapper .slider-section .lSSlideOuter{
+	float:right;
+	padding-right:0px;
+	padding-left:40px;
+
+}
+.banner-tabbed-section-wrapper .tabbed-section-wrapper{
+	float: left;
+}
+
+.sidebar-layout--both-sidebar #left-secondary, .home.blog.sidebar-layout--both-sidebar #left-secondary{
+	float: right;
+}
+.sidebar-layout--both-sidebar #primary, .home.blog.sidebar-layout--both-sidebar #primary{
+	float: right;
+	margin-right:2% !important;
+	margin-left:0% !important;
+}
+.sidebar-layout--both-sidebar #secondary, .home.blog.sidebar-layout--both-sidebar #secondary{
+	float: left;
+}
+
+.archive-style--grid .articlewave-content-wrapper .article-cat-item, .front-page-post-style--grid .articlewave-content-wrapper .article-cat-item{
+	left:unset;
+	right: 25px;
+}
+
+.articlewave-post-title-prefix-wrapper .related-post-content-wrap{
+	margin-right:4%;
+	margin-left:0;
+}
+
+.header-search-wrapper .search-form-wrap{
+	right: unset;
+	left: 0;
+}
+.header-search-wrapper .search-form-wrap::before{
+	left: 13px;
+	right: unset;
+}
+
+.search-icon-close{
+	right:-12px;
+	left: unset;
+}
+
+.sticky-header-sidebar.isActive{
+	left: unset;
+	right: 0;
+}
+
+.sticky-sidebar-close{
+	right: unset;
+	left: -16px;
+}
+
+.sticky-header-sidebar{
+	right: -360px;
+	left: unset;
+}
+
+.tabbed-section-wrapper .tab-button i{
+	padding-left: 5px;
+	padding-right: 0px;
+}
+
+.articlewave-social-icons-wrapper .single-icon-wrap{
+	margin-right: 12px;
+	margin-left: 0px;
+}
+.articlewave-read-more-est-time a{
+	float: left;
+}
+@media (max-width: 600px) {
+	.banner-tabbed-section-wrapper .slider-section-wrapper .slider-section .lSSlideOuter{
+		padding-left: 0px;
+	}
+}
+
+.search-form-wrap .articlewave-search-posts-wrap{
+	text-align: right;
+}
+.articlewave-search-results-wrap .articlewave-item .articlewave-post-thumb-wrap{
+	margin-left: 15px;
+	margin-right: 0;
+}

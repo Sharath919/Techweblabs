@@ -1,0 +1,135 @@
+[
+    {
+        "Almarai": {
+            "variants": [
+                "regular",
+                "500",
+                "700"
+            ],
+            "category": "sans-serif"
+        }
+    },
+    {
+        "Josefin Sans": {
+            "variants": [
+                "regular",
+                "500",
+                "600",
+                "700"
+            ],
+            "category": "sans-serif"
+        }
+    },
+    {
+        "Mukta": {
+            "variants": [
+                "regular",
+                "500",
+                "600",
+                "700"
+            ],
+            "category": "sans-serif"
+        }
+    },
+    {
+        "Nunito": {
+            "variants": [
+                "regular",
+                "italic",
+                "600",
+                "600italic",
+                "700",
+                "700italic",
+                "900"
+            ],
+            "category": "sans-serif"
+        }
+    },
+    {
+        "Open Sans": {
+            "variants": [
+                "regular",
+                "italic",
+                "500",
+                "600",
+                "600italic",
+                "700",
+                "700italic"
+            ],
+            "category": "sans-serif"
+        }
+    },
+    {
+        "Oswald": {
+            "variants": [
+                "regular",
+                "500",
+                "600",
+                "700"
+            ],
+            "category": "sans-serif"
+        }
+    },
+    {
+        "Raleway": {
+            "variants": [
+                "100",
+                "100italic",
+                "200",
+                "200italic",
+                "300",
+                "300italic",
+                "regular",
+                "italic",
+                "500",
+                "500italic",
+                "600",
+                "600italic",
+                "700",
+                "700italic",
+                "800",
+                "800italic",
+                "900",
+                "900italic"
+            ],
+            "category": "sans-serif"
+        }
+    },
+    {
+        "Roboto": {
+            "variants": [
+                "regular",
+                "italic",
+                "500",
+                "600",
+                "700",
+                "700italic"
+            ],
+            "category": "sans-serif"
+        }
+    },
+    {
+        "Roboto Slab": {
+            "variants": [
+                "regular",
+                "500",
+                "600",
+                "700",
+                "900"
+            ],
+            "category": "serif"
+        }
+    },
+    {
+        "Arvo": {
+            "variants": [
+                "regular",
+                "400",
+                "600",
+                "700",
+                "900"
+            ],
+            "category": "Arvo"
+        }
+    }
+]
