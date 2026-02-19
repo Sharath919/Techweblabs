@@ -1,4 +1,4 @@
-	<footer>
+<footer>
 			<!-- <div class="footer-row1">
 				<div class="container">
 					<div class="row">
@@ -125,7 +125,7 @@
 							</li>
 							<li>
 								<span><i class="fas fa-phone-alt"></i></span>
-								<p>Phone <span> <a href="tel:++917670837961">+917670837961</a></span></p>
+								<p>Phone <span> <a href="tel:++918699855813">+918699855813</a></span></p>
 							</li>
 							<li>
 								<span><i class="fas fa-map-marker-alt"></i></span>
@@ -136,13 +136,13 @@
 					<div class="col-lg-3 col-sm-6">
 						<h5>On-Demand Services</h5>
 						<ul class="footer-address-list link-hover">
-							<li><a href="food-delivery-app">Food Delivery App</a></li>
-							<li><a href="Ride-SharingApp">Taxi App</a></li>
-							<li><a href="professional-services-app">Professional Services App</a></li>
-							<li><a href="beauty-salon-app">Beauty & Salon App</a></li>
-							<li><a href="learning-education-app">Learning & Education App</a></li>
-							<li><a href="real-estate">Real Estate App</a></li>
-							<li><a href="dating-applications">Dating Application</a></li>
+							<li><a href="food-delivery-app-development">Food Delivery App</a></li>
+							<li><a href="on-demand-taxi-booking-app-development">Taxi App</a></li>
+							<li><a href="handyman-mobile-app-development">Professional Services App</a></li>
+							<li><a href="beauty-salon-app-development-company">Beauty & Salon App</a></li>
+							<li><a href="e-learning-app-development">Learning & Education App</a></li>
+							<li><a href="real-estate-app-development">Real Estate App</a></li>
+							<li><a href="dating-app-development">Dating Application</a></li>
 
 
 						</ul>
@@ -204,3 +204,81 @@
 				</div>
 			</div>
 		</footer>
+<?php
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$exclude = ['/', '/food-delivery-app-development', '/grocery-app-development'];
+if (!in_array($uri, $exclude)) {
+?>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What services do you offer in Hyderabad?", "acceptedAnswer": {"@type": "Answer", "text": "We design and build mobile apps, web apps, and on-demand platforms tailored for Hyderabad businesses, including food, grocery, taxi, and professional services."}},
+    {"@type": "Question", "name": "How much does mobile app development cost in Hyderabad?", "acceptedAnswer": {"@type": "Answer", "text": "MVPs typically start around ₹3–6 lakhs depending on scope, integrations, and design. Get a tailored estimate after a short consultation."}},
+    {"@type": "Question", "name": "What is the usual delivery timeline?", "acceptedAnswer": {"@type": "Answer", "text": "Streamlined MVPs deliver in 6–10 weeks. Full-featured builds with analytics, loyalty, or ERP/POS integrations may take 12–20+ weeks."}},
+    {"@type": "Question", "name": "Do you provide maintenance and post-launch support?", "acceptedAnswer": {"@type": "Answer", "text": "Yes—ongoing maintenance, performance tuning, version upgrades, and feature enhancements are available via flexible support plans."}},
+    {"@type": "Question", "name": "Can you integrate local payment gateways and logistics?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. We support UPI, netbanking, wallets, and integrate local courier and delivery APIs for reliable last-mile operations."}}
+  ]
+}
+</script>
+<?php } ?>
+<?php
+// Inject Service + Breadcrumb JSON-LD for ondemand service pages
+$uriPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$isBlog = strpos($uriPath, '/blogs/') === 0;
+// Detect friendly slug that maps to an ondemand PHP file
+$root = dirname(__DIR__);
+$candidateFile = $root . '/pages/ondemand' . rtrim($uriPath, '/') . '.php';
+$isOndemand = is_file($candidateFile) || strpos($uriPath, '/pages/ondemand/') === 0;
+$excludeJsonLd = ['/', '/food-delivery-app-development', '/grocery-app-development'];
+if (($isOndemand) && !$isBlog && !in_array($uriPath, $excludeJsonLd)) {
+  $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+  $host = $_SERVER['HTTP_HOST'];
+  $fullUrl = $scheme . '://' . $host . $uriPath;
+  $slug = trim($uriPath, '/');
+  $slug = str_replace('pages/ondemand/', '', $slug);
+  $pageName = $slug ? ucwords(str_replace('-', ' ', $slug)) : 'Service';
+?>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "<?php echo $scheme . '://' . $host . '/'; ?>"},
+    {"@type": "ListItem", "position": 2, "name": "<?php echo $pageName; ?>", "item": "<?php echo $fullUrl; ?>"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "<?php echo $pageName; ?> Development in Hyderabad",
+  "serviceType": "<?php echo $pageName; ?> Development",
+  "provider": {
+    "@type": "Organization",
+    "name": "Techweblabs",
+    "url": "<?php echo $scheme . '://' . $host . '/'; ?>",
+    "logo": "<?php echo $scheme . '://' . $host . '/images/logo.png'; ?>"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Hyderabad",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "addressCountry": "IN"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock"
+  },
+  "url": "<?php echo $fullUrl; ?>"
+}
+</script>
+<?php }
+?>

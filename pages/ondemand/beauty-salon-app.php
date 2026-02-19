@@ -10,16 +10,16 @@
     <meta name="author" content="Techweblabs">
     
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Beauty Salon App Development | Techweblabs">
-    <meta property="og:description" content="Techweblabs offers top-notch beauty salon app development solutions. Experience the best in mobile app development.">
+    <meta property="og:title" content="Beauty Services App Development | Beauty Salon App Development Company | TechWebLabs">
+    <meta property="og:description" content="Beauty services app development and beauty salon app development services by TechWebLabs. Build custom on-demand beauty services applications with booking, professional matching, and payment processing.">
     <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/beauty-salon-app">
+    <meta property="og:url" content="https://techweblabs.com/beauty-services-app-development">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Beauty Salon App Development | Techweblabs">
-    <meta name="twitter:description" content="Techweblabs delivers outstanding beauty salon app development services. Discover innovative mobile app development solutions.">
+    <meta name="twitter:title" content="Beauty Services App Development | Beauty Salon App Development Company | TechWebLabs">
+    <meta name="twitter:description" content="Beauty services app development and beauty salon app development services by TechWebLabs. Build custom on-demand beauty services applications with booking, professional matching, and payment processing.">
     <meta name="twitter:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
 
     <!-- Favicon -->
@@ -52,16 +52,16 @@
     <meta name="author" content="Techweblabs">
     
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Beauty Salon App Development | Techweblabs">
-    <meta property="og:description" content="Techweblabs offers top-notch beauty salon app development solutions. Experience the best in mobile app development.">
+    <meta property="og:title" content="Beauty Services App Development | Beauty Salon App Development Company | TechWebLabs">
+    <meta property="og:description" content="Beauty services app development and beauty salon app development services by TechWebLabs. Build custom on-demand beauty services applications with booking, professional matching, and payment processing.">
     <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/beauty-salon-app">
+    <meta property="og:url" content="https://techweblabs.com/beauty-services-app-development">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Beauty Salon App Development | Techweblabs">
-    <meta name="twitter:description" content="Techweblabs delivers outstanding beauty salon app development services. Discover innovative mobile app development solutions.">
+    <meta name="twitter:title" content="Beauty Services App Development | Beauty Salon App Development Company | TechWebLabs">
+    <meta name="twitter:description" content="Beauty services app development and beauty salon app development services by TechWebLabs. Build custom on-demand beauty services applications with booking, professional matching, and payment processing.">
     <meta name="twitter:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
 
     <!-- Favicon -->
@@ -89,9 +89,10 @@
 </head>
 
     <meta charset="utf-8">
-    <title>Techweblabs &amp;Beauty & Salon App - Discover & Book Beauty Services</title>
-    <meta name="description" content="Explore a world of beauty services and book salon appointments with our user-friendly app. Get the latest beauty trends, haircuts, skincare, and more.">
-    <meta name="keywords" content="beauty and salon app, spa services, haircuts, beauty treatments, wellness, self-care">
+    <title>Beauty Services App Development | Beauty Salon App Development Company | TechWebLabs</title>
+    <meta name="description" content="Beauty services app development and beauty salon app development services by TechWebLabs. Build custom on-demand beauty services applications with booking, professional matching, and payment processing. Expert local services app development company.">
+    <meta name="keywords" content="beauty services app development, beauty salon app development company, local services app development, on-demand beauty services app, salon booking app, beauty app development, TechWebLabs, mobile app development company">
+    <link rel="canonical" href="https://techweblabs.com/beauty-services-app-development">
     <meta name="author" content="TechWebLabs">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -121,7 +122,7 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 ?> <?php
 include (ROOT_DIR . 'homepage/header.php');
 ?> 
-        <section class="breadcrumb-areav2" data-background="images/banner/8.jpg">
+        <section class="breadcrumb-areav2" data-background="images/banner-5.jpg">
         <div class="container">
            
             <div class="row">
@@ -813,30 +814,30 @@ include (ROOT_DIR . 'homepage/header.php');
  <div class="carousel-inner">
 <div class="carousel-item active">
   <div class="col-lg-12 col-sm-12 wptbb">
- <div class="pbwide shadow bg-gradient1">
- <div class="portfolio-item-info-tt">
- <div class="logowide mb20"><img src="images/client/customer-logo-5.png" alt="Beauty Salon App Development Image" class="img-fluid"></div>
- <div class="widebloktag"><span>Design</span> <span>Coding</span> <span>Design</span> </div>
- <h3 class="mt30 mb30">Weather &amp; Radar - Accurate Weather Forecast</h3>
- < ul class="info-list-ul">
- <li>Product Strategy</li>
- <li>Product UI/UX Design</li>
- <li>Branding Design</li>
- <li>Design System</li>
- </ul>
-  <a href="#" class="btn-outline lnk mt30">View Case Study <i class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a>
- </div>
- <div class="portfolio-wide-image">
- <div class="img-wide-blocktt tilt-outer">
- <div class="innerwidedevice tilt-inner" data-tilt="" data-tilt-max="4" data-tilt-speed="1000" data-tilt-perspective="2000">
- <div class="desktopblock shadow1"><img src="images/portfolio/portfolio-wide-1.jpg" alt="Beauty Salon App Development Image" class="img-fluid"> </div>
- < div class="mobileblock shadow1"><img src="images/portfolio/portfolio-wide-1a.jpg" alt="Beauty Salon App Development Image" class="img-fluid"> </div>
- </div>
- </div>
- </div>
- </div>
- </div>
- </div>
+<div class="pbwide shadow bg-gradient1">
+<div class="portfolio-item-info-tt">
+<div class="logowide mb20"><img src="images/client/customer-logo-5.png" alt="Estetica Beauty Services App Development" class="img-fluid"></div>
+<div class="widebloktag"><span>Beauty Services</span> <span>Local Services</span> <span>On-Demand</span> </div>
+<h3 class="mt30 mb30">Estetica - Beauty Services App Development</h3>
+<ul class="info-list-ul">
+<li>Service Booking</li>
+<li>Professional Matching</li>
+<li>Real-time Tracking</li>
+<li>Payment Integration</li>
+</ul>
+<a href="#" class="btn-outline lnk mt30">View Case Study <i class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a>
+</div>
+<div class="portfolio-wide-image">
+<div class="img-wide-blocktt tilt-outer">
+<div class="innerwidedevice tilt-inner" data-tilt="" data-tilt-max="4" data-tilt-speed="1000" data-tilt-perspective="2000">
+<div class="desktopblock shadow1"><img src="images/estetica/estetica-1.jpg" alt="Estetica Beauty Services App Screenshots" class="img-fluid" onerror="this.src='images/portfolio/portfolio-wide-1.jpg'"> </div>
+<div class="mobileblock shadow1"><img src="images/estetica/estetica-mobile-1.jpg" alt="Estetica Beauty Services App Mobile Screenshots" class="img-fluid" onerror="this.src='images/portfolio/portfolio-wide-1a.jpg'"> </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="carousel-item">
   <div class="col-lg-12 col-sm-12 wptbb">
   <div class="pbwide shadow bg-gradient1">

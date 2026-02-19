@@ -121,7 +121,7 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 ?> <?php
 include (ROOT_DIR . 'homepage/header.php');
 ?> 
-  <section class="breadcrumb-areav2" data-background="images/banner/8.jpg">
+  <section class="breadcrumb-areav2" data-background="images/banner-5.jpg">
       <div class="container mt-5">
         <h1 class="text-center mb-4">Techweblabs Terms and Conditions</h1>
         <div class="card">

@@ -698,7 +698,7 @@ With over seven years of industry experience under our belt, we bring a wealth o
 											href><i
 												class="fas fa-envelope"></i> <span class="__cf_email__"
 												data-cfemail>info@techweblabs.com</span></a></li>
-									<li><a href="tel:+917670837961"><i class="fas fa-phone-alt"></i> +91
+									<li><a href="tel:+918699855813"><i class="fas fa-phone-alt"></i> +91
 											7670837961</a> </li>
 								</ul>
 							</div>

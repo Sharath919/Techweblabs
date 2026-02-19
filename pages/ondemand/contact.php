@@ -8,19 +8,21 @@
     <meta name="description" content="Contact solutions by Techweblabs, leading mobile app development company. Get innovative and efficient contact services tailored to your needs.">
     <meta name="keywords" content="Contact, Mobile App Development, Techweblabs, best app development, custom app solutions, professional mobile app development">
     <meta name="author" content="Techweblabs">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://techweblabs.com/contact">
     
     <!-- Open Graph Meta Tags for Social Media -->
     <meta property="og:title" content="Contact | Techweblabs">
     <meta property="og:description" content="Techweblabs offers top-notch contact solutions. Experience the best in mobile app development.">
-    <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/contact">
+    <meta property="og:image" content="https://techweblabs.com/images/mobile-app-development.jpg">
+    <meta property="og:url" content="https://techweblabs.com/contact">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact | Techweblabs">
     <meta name="twitter:description" content="Techweblabs delivers outstanding contact services. Discover innovative mobile app development solutions.">
-    <meta name="twitter:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
+    <meta name="twitter:image" content="https://techweblabs.com/images/mobile-app-development.jpg">
 
     <!-- Favicon -->
     <link rel="icon" href="https://www.techweblabs.com/favicon.ico" type="image/x-icon">
@@ -42,6 +44,47 @@
         "target": "https://www.techweblabs.com/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "TechWebLabs",
+      "url": "https://techweblabs.com/",
+      "image": "https://techweblabs.com/images/logo.png",
+      "telephone": "+91 7670837961",
+      "email": "info@techweblabs.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hyderabad",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.facebook.com/techweblabs",
+        "https://twitter.com/techweblabs",
+        "https://www.linkedin.com/company/techweblabs"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://techweblabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://techweblabs.com/contact"
+        }
+      ]
     }
     </script>
 </head>
@@ -137,9 +180,9 @@ include (ROOT_DIR . 'homepage/header.php');
 							<div class="bread-inner">
 								<div class="bread-menu wow fadeInUp" data-wow-delay=".2s">
 									<ul>
-										<li><a href="index.html">Home</a></li>
-										<li><a href="#">Contact</a></li>
-									</ul>
+												<li><a href="/">Home</a></li>
+												<li><a href="#">Contact</a></li>
+											</ul>
 								</div>
 								<div class="bread-title wow fadeInUp" data-wow-delay=".5s">
 									<h2>Contact</h2>
@@ -205,7 +248,7 @@ include (ROOT_DIR . 'homepage/header.php');
 												<span><i class="fas fa-phone-alt"></i> Phone:</span>
 												<div class="info-body">
 													<p>Assistance hours: Monday – Saturdays, 9 am to 6 pm</p>
-													<a href="tel:+917670837961">(+91) 7670837961</a>
+													<a href="tel:+918699855813">(+91) 7670837961</a>
 												</div>
 											</div>
 										</div>

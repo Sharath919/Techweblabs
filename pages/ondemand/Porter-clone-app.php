@@ -1,101 +1,102 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-
-
-
 <head>
-    <title>Porter Clone App Development | Top Mobile App Development by Techweblabs</title>
-    <meta name="description" content="Porter Clone App Development solutions by Techweblabs, leading mobile app development company. Get innovative and efficient porter clone app development services tailored to your needs.">
-    <meta name="keywords" content="Porter, Clone, App, Mobile App Development, Techweblabs, best app development, custom app solutions, professional mobile app development">
-    <meta name="author" content="Techweblabs">
-    
-    <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Porter Clone App Development | Techweblabs">
-    <meta property="og:description" content="Techweblabs offers top-notch porter clone app development solutions. Experience the best in mobile app development.">
-    <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/Porter-clone-app">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Porter Clone App Development | Techweblabs">
-    <meta name="twitter:description" content="Techweblabs delivers outstanding porter clone app development services. Discover innovative mobile app development solutions.">
-    <meta name="twitter:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://www.techweblabs.com/favicon.ico" type="image/x-icon">
-
-    <!-- Schema.org Markup for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "Techweblabs",
-      "url": "https://www.techweblabs.com/",
-      "sameAs": [
-        "https://www.facebook.com/techweblabs",
-        "https://twitter.com/techweblabs",
-        "https://www.linkedin.com/company/techweblabs"
-      ],
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.techweblabs.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-</head>
-
-    <title>Porter Clone App Development | Top Mobile App Development by Techweblabs</title>
-    <meta name="description" content="Porter Clone App Development solutions by Techweblabs, leading mobile app development company. Get innovative and efficient porter clone app development services tailored to your needs.">
-    <meta name="keywords" content="Porter, Clone, App, Mobile App Development, Techweblabs, best app development, custom app solutions, professional mobile app development">
-    <meta name="author" content="Techweblabs">
-    
-    <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Porter Clone App Development | Techweblabs">
-    <meta property="og:description" content="Techweblabs offers top-notch porter clone app development solutions. Experience the best in mobile app development.">
-    <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/Porter-clone-app">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Porter Clone App Development | Techweblabs">
-    <meta name="twitter:description" content="Techweblabs delivers outstanding porter clone app development services. Discover innovative mobile app development solutions.">
-    <meta name="twitter:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://www.techweblabs.com/favicon.ico" type="image/x-icon">
-
-    <!-- Schema.org Markup for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "Techweblabs",
-      "url": "https://www.techweblabs.com/",
-      "sameAs": [
-        "https://www.facebook.com/techweblabs",
-        "https://twitter.com/techweblabs",
-        "https://www.linkedin.com/company/techweblabs"
-      ],
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.techweblabs.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-</head>
-
     <meta charset="utf-8">
-    <title>Techweblabs &amp; Best Porter Clone App Development Company in Hyderabad</title>
-    <meta name="description" content="Best Porter Clone App Development Company in Hyderabad">
-    <meta name="keywords" content="Porter Clone, On-Demand Logistics App, Local Trucking Service, Transportation and Delivery">
-    <meta name="author" content="Techweblabs">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#4302b2">
+    
+    <!-- SEO Optimized Title -->
+    <title>Porter Clone App Development | Logistics & Transportation App Development | TechWebLabs</title>
+    
+    <!-- SEO Optimized Meta Description -->
+    <meta name="description" content="Build a Porter clone app with TechWebLabs. Expert logistics and transportation application development. Custom Porter clone solutions for logistics businesses. Get your logistics app developed today.">
+    
+    <!-- SEO Keywords -->
+    <meta name="keywords" content="porter clone app development, porter clone application development, logistics app development, transportation app development, porter clone app, on-demand logistics app, local trucking service app">
+    
+    <meta name="author" content="TechWebLabs">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://techweblabs.com/Porter-clone-app">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Porter Clone App Development | Logistics & Transportation App Development | TechWebLabs">
+    <meta property="og:description" content="Build a Porter clone app with TechWebLabs. Expert logistics and transportation application development. Custom Porter clone solutions for logistics businesses.">
+    <meta property="og:image" content="https://techweblabs.com/images/porter/porter-home.png">
+    <meta property="og:url" content="https://techweblabs.com/Porter-clone-app">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TechWebLabs">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Porter Clone App Development | Logistics & Transportation App Development">
+    <meta name="twitter:description" content="Build a Porter clone app with TechWebLabs. Expert logistics and transportation application development.">
+    <meta name="twitter:image" content="https://techweblabs.com/images/porter/porter-home.png">
+    <meta name="twitter:site" content="@techweblabs">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/logo/Fav.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/logo/Fav.png">
+    
+    <!-- Schema.org Structured Data - Service Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Porter Clone App Development",
+      "name": "Porter Clone App Development Services",
+      "description": "Build a Porter clone app with TechWebLabs. Expert logistics and transportation application development. Custom Porter clone solutions for logistics businesses.",
+      "provider": {
+        "@type": "Organization",
+        "name": "TechWebLabs",
+        "url": "https://techweblabs.com",
+        "logo": "https://techweblabs.com/images/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society",
+          "addressLocality": "Madhapur",
+          "addressRegion": "Hyderabad",
+          "postalCode": "500081",
+          "addressCountry": "IN"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Worldwide"
+      },
+      "url": "https://techweblabs.com/Porter-clone-app",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://techweblabs.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Porter Clone App Development",
+          "item": "https://techweblabs.com/Porter-clone-app"
+        }
+      ]
+    }
+    </script>
     <link href="images/logo/Fav.png" rel="icon">
     <link href="css/css-bootstrap.min.css" rel="stylesheet">
     <link href="css/css-plugin.min.css" rel="stylesheet">
@@ -121,7 +122,7 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 ?> <?php
 include (ROOT_DIR . 'homepage/header.php');
 ?> 
-        <section class="breadcrumb-areav2" data-background="images/banner/8.jpg">
+        <section class="breadcrumb-areav2" data-background="images/banner-5.jpg">
         <div class="container">
            
             <div class="row">
@@ -130,9 +131,9 @@ include (ROOT_DIR . 'homepage/header.php');
             <div class="banner_text">
               <!-- h1 -->
               <!-- <h1>Best way to <span>manage your customers.</span></h1> -->
-              <h1>Stay Ahead in On Demand: Porter clone app Development with Techweblabs</h1>
+              <h1>Porter Clone App Development | Logistics & Transportation App Development</h1>
               <!-- p -->
-              <p>Techweblabs specializes in Porter clone App development, offering businesses a robust platform to enter the competitive on-demand delivery market. Our solution replicates the success of Porter clone, providing users with convenient access to a wide range of delivery services.
+              <p>Build a Porter clone app with TechWebLabs. We provide expert logistics and transportation application development services. Our custom Porter clone solutions for logistics businesses include features like vehicle tracking, load management, real-time updates, secure payments, and driver management dashboard. Get your logistics app developed today.
               </p>
               <a href="https://wa.link/fucwsq" class="btn-outline lnk mt30">Request A Quote <i
 									class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a>

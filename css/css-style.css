@@ -10761,3 +10761,44 @@ a.smllbtnn {
    
 }
 
+/* Dynamic text color for banner based on gradient */
+.breadcrumb-areav2 .banner_text.text-white h1,
+.breadcrumb-areav2 .banner_text.text-white h2,
+.breadcrumb-areav2 .banner_text.text-white h3,
+.breadcrumb-areav2 .banner_text.text-white h4,
+.breadcrumb-areav2 .banner_text.text-white h5,
+.breadcrumb-areav2 .banner_text.text-white h6,
+.breadcrumb-areav2 .banner_text.text-white p {
+    color: #ffffff !important;
+}
+
+.breadcrumb-areav2 .banner_text.text-dark h1,
+.breadcrumb-areav2 .banner_text.text-dark h2,
+.breadcrumb-areav2 .banner_text.text-dark h3,
+.breadcrumb-areav2 .banner_text.text-dark h4,
+.breadcrumb-areav2 .banner_text.text-dark h5,
+.breadcrumb-areav2 .banner_text.text-dark h6,
+.breadcrumb-areav2 .banner_text.text-dark p {
+    color: #000000 !important;
+}
+
+.breadcrumb-areav2 .banner_text.text-white a.btn-outline {
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.breadcrumb-areav2 .banner_text.text-white a.btn-outline:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.breadcrumb-areav2 .banner_text.text-dark a.btn-outline {
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+.breadcrumb-areav2 .banner_text.text-dark a.btn-outline:hover {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+

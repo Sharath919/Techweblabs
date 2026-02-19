@@ -1,0 +1,3 @@
+# Minimal .htaccess - Test if this works first
+DirectoryIndex index.php
+

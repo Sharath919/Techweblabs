@@ -3,11 +3,8 @@
 		<div class="row">
 			<div class="col-lg-6 v-center">
 				<div class="hero-heading-sec2 niwax" data-rellax-speed="3">
-					<h1 class="wow fadeIn" data-wow-delay="0.2s">Top Rated Mobile App
-						Development Company</h1>
-					<p class="wow fadeIn" data-wow-delay="0.4s">As a top-rated mobile app
-						development company based in India, Techweblabs combines creativity and
-						extensive experience to deliver innovative mobile app solutions.</p>
+					<h1 class="wow fadeIn" data-wow-delay="0.2s">Who is TechWebLabs? Leading Mobile App & Web Development Company</h1>
+					<p class="wow fadeIn" data-wow-delay="0.4s"><strong>TechWebLabs is a premier mobile app and web development company in Hyderabad, India.</strong> We provide custom app development, Flutter development, AI software solutions, and digital transformation services for startups and enterprises worldwide. Our expertise includes iOS, Android, React Native, and full-stack web development.</p>
 					<div class="content-sec  d-flex mt30 v-center text-w wow fadeIn" data-wow-delay="0.6s">
 						<div class="mr25"><a href="https://wa.link/fucwsq" class="btn-main bg-btn4 lnk ">GET
 								STARTED<i class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a></div>
@@ -22,7 +19,7 @@
 				</div>
 			</div>
 			<div class="col-lg-6 v-center">
-				<div class="app-hero-bnr wow fadeIn" data-wow-delay="0.4s"> <img src="images/Bg.png" alt="Techweblabs mobile app development company" class="img-fluid">
+				<div class="app-hero-bnr wow fadeIn" data-wow-delay="0.4s"> <img src="images/Bg.png" alt="TechWebLabs - Best Flutter App Development Company and Startup App Developers" class="img-fluid" loading="lazy" width="600" height="400">
 				</div>
 			</div>
 		</div>
@@ -56,11 +53,8 @@ include('pages/homepage/components/services.php');
 			<div class="col-lg-6">
 				<div class="common-heading text-l">
 					<span>Why Choose Us</span>
-					<h2 class="mb20">Why The Techweblabs <span class="text-second text-bold">Ranked
-							Top</span> Among The Leading Web &amp; App Development Companies</h2>
-					<p>Celebrated for our innovative solutions and unwavering commitment to
-						client success, Techweblabs is recognized as a premier choice among web
-						and app development companies. Explore what sets us apart.</p>
+					<h2 class="mb20">Why is TechWebLabs the <span class="text-second text-bold">Best Flutter App Development Company</span> and Top Startup App Development Partner?</h2>
+					<p><strong>TechWebLabs ranks among top app development companies</strong> because we deliver custom mobile apps, web solutions, and AI software development with proven expertise in Flutter, React Native, and enterprise solutions. We specialize in startup app development, helping businesses transform ideas into successful digital products.</p>
 					<div class="itm-media-object mt40 tilt-3d">
 						<div class="media">
 							<div class="img-ab- base" data-tilt data-tilt-max="20" data-tilt-speed="1000"><img src="images/icons-computers.svg" alt="icon" class="layer"></div>
@@ -91,16 +85,7 @@ include('pages/homepage/components/services.php');
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<div data-tilt data-tilt-max="5" data-tilt-speed="1000" class="single-image bg-shape-dez wow fadeIn" data-wow-duration="2s"><img src="images/team.jpeg" alt="image" class="img-fluid"></div>
-
-				<div class="cta-card mt60 text-center">
-					<h3 class="mb20">Turning Ideas into Reality <span class="text-second text-bold">Let's Begin Your Next Project</span>
-						Together</h3>
-					<p>Embark on a journey of innovation with Techweblabs. Our expertise
-						transforms your concepts into thriving projects. Let's start creating
-						together.</p>
-					<a href="https://wa.link/fucwsq" class="btn-outline lnk mt30">Request A Quote <i class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a>
-				</div>
+				<div data-tilt data-tilt-max="5" data-tilt-speed="1000" class="single-image bg-shape-dez wow fadeIn" data-wow-duration="2s"><img src="images/team.jpeg" alt="TechWebLabs Development Team - Expert Mobile App and Web Developers" class="img-fluid" loading="lazy" width="500" height="400"></div>
 			</div>
 		</div>
 	</div>
@@ -431,7 +416,7 @@ include('components/reviews.php');
 					<span>Let's work together</span>
 					<h2>We Love to Listen to Your Requirements</h2>
 					<a href="https://wa.link/fucwsq" class="btn-main bg-btn4 lnk ">GET STARTED<i class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a>
-					<p class="cta-call">Or call us now <a href="tel:+917670837961"><i class="fas fa-phone-alt"></i> +91 7670837961</a></p>
+					<p class="cta-call">Or call us now <a href="tel:+918699855813"><i class="fas fa-phone-alt"></i> +91 7670837961</a></p>
 				</div>
 			</div>
 		</div>

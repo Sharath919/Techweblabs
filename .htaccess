@@ -2,37 +2,109 @@
     RewriteEngine On
     RewriteBase /
 
-    
+    # Force HTTPS (commented out for local development)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Force non-www (commented out for local development)
+    # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    # RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
     # Redirect URLs with a trailing slash to URLs without a trailing slash
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-    # Rewrite rule for specific blog pages
-    RewriteRule ^blogs/(.*)$ /$1 [L,R=301]
+    # Don't rewrite if file or directory exists
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
 
+    # Blog routes - SEO-friendly URLs (must come BEFORE other rewrites)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^blogs/([a-zA-Z0-9-]+)/?$ /pages/blogs/post.php?slug=$1 [L,QSA]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(blog|blogs)/?$ /pages/blogs/index.php [L]
 
+    # Specific page rewrites (exact matches first)
     RewriteRule ^full-stack-development-course-with-guaranteed-placement$ /pages/ondemand/full-stack-development.php [L]
- # Specific rules for pages like 'about' and 'careers' if needed
     RewriteRule ^about$ /pages/ondemand/about.php [L]
     RewriteRule ^careers$ /pages/ondemand/careers.php [L]
     RewriteRule ^contact$ /pages/ondemand/contact.php [L]
-   
+    
+    # SEO-optimized URL mappings (multi-word slugs)
+    RewriteRule ^food-delivery-app-development$ /pages/ondemand/food-delivery-app.php [L]
+    RewriteRule ^grocery-app-development$ /pages/ondemand/grocery-delivery-app.php [L]
+    RewriteRule ^on-demand-home-services-app-development$ /pages/ondemand/home-services-app.php [L]
+    RewriteRule ^on-demand-taxi-booking-app-development$ /pages/ondemand/Ride-SharingApp.php [L]
+    RewriteRule ^healthcare-mobile-app-development$ /pages/ondemand/healthcare-apps.php [L]
+    RewriteRule ^handyman-mobile-app-development$ /pages/ondemand/professional-services-app.php [L]
+    RewriteRule ^fitness-mobile-app-development-company$ /pages/ondemand/fitness-app.php [L]
+    RewriteRule ^pet-care-app-development$ /pages/ondemand/pet-care-app.php [L]
+    RewriteRule ^beauty-salon-app-development-company$ /pages/ondemand/beauty-salon-app.php [L]
+    RewriteRule ^education-app-development$ /pages/ondemand/education-app.php [L]
+    RewriteRule ^real-estate-app-development$ /pages/ondemand/real-estate.php [L]
+    RewriteRule ^ecommerce-app-development$ /pages/ondemand/e-commerce-app.php [L]
+    RewriteRule ^car-rental-app-development$ /pages/ondemand/automotive-app.php [L]
+    RewriteRule ^beauty-services-app-development$ /pages/ondemand/beauty-salon-app.php [L]
+    RewriteRule ^doctor-consultation-app-development$ /pages/ondemand/consultation-app.php [L]
+    RewriteRule ^social-media-app-development$ /pages/ondemand/socialmedia-app.php [L]
+    RewriteRule ^logistics-transportation-app-development$ /pages/ondemand/logistics-app.php [L]
+    RewriteRule ^e-learning-app-development$ /pages/ondemand/learning-education-app.php [L]
+    RewriteRule ^job-portal-app-development$ /pages/ondemand/job-boards-apps.php [L]
+    RewriteRule ^cashback-app-development$ /pages/ondemand/cashback-coupons.php [L]
+    RewriteRule ^ott-platform-app-development$ /pages/ondemand/ott-applications-app.php [L]
+    RewriteRule ^dating-app-development$ /pages/ondemand/dating-applications.php [L]
+    RewriteRule ^chat-app-development-company$ /pages/ondemand/chat-applications.app.php [L]
+    RewriteRule ^erp-software-development$ /pages/ondemand/Enterprise-Resource-Planning.php [L]
+    RewriteRule ^crm-software-development$ /pages/ondemand/coustmer-relationship.php [L]
+    RewriteRule ^hrm-software-development$ /pages/ondemand/human-resource-app.php [L]
+    RewriteRule ^inventory-management-software-development$ /pages/ondemand/inventory-management.php [L]
+    RewriteRule ^general-marketplaces-app$ /pages/ondemand/general-marketplaces-app.php [L]
 
-    # Custom Rewrite Rule
-    RewriteRule ^([^/]+)-([^/]+)$ /pages/ondemand/$1-$2.php [L]
-
-   
-
-
-
-
-    # Redirect to index.php
+    # Try to match old-style two-word slugs (fallback for existing URLs)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    
-    RewriteRule ^ index.php [L]
+    RewriteRule ^([^/]+)-([^/]+)$ /pages/ondemand/$1-$2.php [L]
+
+    # Final fallback: route to index.php for homepage only
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteRule ^$ index.php [L]
 </IfModule>
 
 # Set the default file for directory indexes
 DirectoryIndex index.php
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Enable Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>

@@ -10,16 +10,16 @@
     <meta name="author" content="Techweblabs">
     
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Automotive App Development | Techweblabs">
-    <meta property="og:description" content="Techweblabs offers top-notch automotive app development solutions. Experience the best in mobile app development.">
+    <meta property="og:title" content="Car Rental App Development | Automotive App Development Company | TechWebLabs">
+    <meta property="og:description" content="Car rental app development services by TechWebLabs. Build custom automotive and car rental applications with booking, fleet management, and payment processing.">
     <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/automotive-app">
+    <meta property="og:url" content="https://techweblabs.com/car-rental-app-development">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Automotive App Development | Techweblabs">
-    <meta name="twitter:description" content="Techweblabs delivers outstanding automotive app development services. Discover innovative mobile app development solutions.">
+    <meta name="twitter:title" content="Car Rental App Development | Automotive App Development Company | TechWebLabs">
+    <meta name="twitter:description" content="Car rental app development services by TechWebLabs. Build custom automotive and car rental applications with booking, fleet management, and payment processing.">
     <meta name="twitter:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
 
     <!-- Favicon -->
@@ -52,16 +52,16 @@
     <meta name="author" content="Techweblabs">
     
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Automotive App Development | Techweblabs">
-    <meta property="og:description" content="Techweblabs offers top-notch automotive app development solutions. Experience the best in mobile app development.">
+    <meta property="og:title" content="Car Rental App Development | Automotive App Development Company | TechWebLabs">
+    <meta property="og:description" content="Car rental app development services by TechWebLabs. Build custom automotive and car rental applications with booking, fleet management, and payment processing.">
     <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/automotive-app">
+    <meta property="og:url" content="https://techweblabs.com/car-rental-app-development">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Automotive App Development | Techweblabs">
-    <meta name="twitter:description" content="Techweblabs delivers outstanding automotive app development services. Discover innovative mobile app development solutions.">
+    <meta name="twitter:title" content="Car Rental App Development | Automotive App Development Company | TechWebLabs">
+    <meta name="twitter:description" content="Car rental app development services by TechWebLabs. Build custom automotive and car rental applications with booking, fleet management, and payment processing.">
     <meta name="twitter:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
 
     <!-- Favicon -->
@@ -89,9 +89,10 @@
 </head>
 
     <meta charset="utf-8">
-    <title>Techweblabs &amp; Automotive App - Streamlining Your Vehicle Needs</title>
-    <meta name="description" content="Access a wide range of automotive services and information with our automotive app. From car maintenance to vehicle listings, we've got you covered.">
-    <meta name="keywords" content="utomotive app, car maintenance, vehicle listings, auto repair, automotive information">
+    <title>Car Rental App Development | Automotive App Development Company | TechWebLabs</title>
+    <meta name="description" content="Car rental app development services by TechWebLabs. Build custom automotive and car rental applications with booking, fleet management, and payment processing. Expert automotive app development company.">
+    <meta name="keywords" content="car rental app development, automotive app development, car booking app development, vehicle rental app, fleet management app, automotive application development, car rental software, TechWebLabs, mobile app development company">
+    <link rel="canonical" href="https://techweblabs.com/car-rental-app-development">
     <meta name="author" content="TechWebLabs">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -121,7 +122,7 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 ?> <?php
 include (ROOT_DIR . 'homepage/header.php');
 ?> 
-        <section class="breadcrumb-areav2" data-background="images/banner/8.jpg">
+        <section class="breadcrumb-areav2" data-background="images/banner-5.jpg">
         <div class="container">
            
             <div class="row">
@@ -130,10 +131,9 @@ include (ROOT_DIR . 'homepage/header.php');
             <div class="banner_text">
               <!-- h1 -->
               <!-- <h1>Best way to <span>manage your customers.</span></h1> -->
-              <h1>Techweblabs Automotive App: Your One-Stop Solution for Car Services</h1>
+              <h1>Car Rental App Development | Build Your Automotive & Vehicle Rental Application</h1>
               <!-- p -->
-              <p>Techweblabs' 6 years of experience Automotive App: Transforming the Way You Manage Your Vehicle
-                In today's fast-paced world, staying on top of vehicle maintenance and services can be a challenge. Techweblabs introduces its groundbreaking Automotive App, designed to simplify the way you care for your vehicle and access automotive services.
+              <p>Build custom car rental and automotive applications with TechWebLabs. Expert car rental app development services including vehicle booking, fleet management, payment processing, and real-time tracking. Our custom automotive app solutions for car rental businesses include features like vehicle search, booking management, GPS tracking, and admin dashboard. Get your car rental app developed today.
               </p>
               <a href="https://wa.link/fucwsq" class="btn-outline lnk mt30">Request A Quote <i
 									class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a>
@@ -818,22 +818,22 @@ include (ROOT_DIR . 'homepage/header.php');
   <div class="col-lg-12 col-sm-12 wptbb">
 <div class="pbwide shadow bg-gradient1">
 <div class="portfolio-item-info-tt">
-<div class="logowide mb20"><img src="images/client/customer-logo-5.png" alt="Automotive App Development Image" class="img-fluid"></div>
-<div class="widebloktag"><span>Design</span> <span>Coding</span> <span>Design</span> </div>
-<h3 class="mt30 mb30">Weather &amp; Radar - Accurate Weather Forecast</h3>
+<div class="logowide mb20"><img src="images/client/customer-logo-5.png" alt="Pryde Car Rental App Development" class="img-fluid"></div>
+<div class="widebloktag"><span>Car Rental</span> <span>Automotive</span> <span>Fleet Management</span> </div>
+<h3 class="mt30 mb30">Pryde - Car Rental App Development</h3>
 <ul class="info-list-ul">
-<li>Product Strategy</li>
-<li>Product UI/UX Design</li>
-<li>Branding Design</li>
-<li>Design System</li>
+<li>Car Booking System</li>
+<li>Fleet Management</li>
+<li>Payment Integration</li>
+<li>Real-time Tracking</li>
 </ul>
 <a href="#" class="btn-outline lnk mt30">View Case Study <i class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a>
 </div>
 <div class="portfolio-wide-image">
 <div class="img-wide-blocktt tilt-outer">
 <div class="innerwidedevice tilt-inner" data-tilt="" data-tilt-max="4" data-tilt-speed="1000" data-tilt-perspective="2000">
-<div class="desktopblock shadow1"><img src="images/portfolio/portfolio-wide-1.jpg" alt="Automotive App Development Image" class="img-fluid"> </div>
-<div class="mobileblock shadow1"><img src="images/portfolio/portfolio-wide-1a.jpg" alt="Automotive App Development Image" class="img-fluid"> </div>
+<div class="desktopblock shadow1"><img src="images/pryde/pryde-1.jpg" alt="Pryde Car Rental App Screenshots" class="img-fluid" onerror="this.src='images/portfolio/portfolio-wide-1.jpg'"> </div>
+<div class="mobileblock shadow1"><img src="images/pryde/pryde-mobile-1.jpg" alt="Pryde Car Rental App Mobile Screenshots" class="img-fluid" onerror="this.src='images/portfolio/portfolio-wide-1a.jpg'"> </div>
 </div>
 </div>
 </div>

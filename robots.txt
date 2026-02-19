@@ -1,0 +1,50 @@
+# robots.txt for techweblabs.com
+# Optimized for Google Search and AI Crawlers
+
+# Allow all search engines and AI crawlers
+User-agent: *
+Allow: /
+
+# Allow Googlebot specifically
+User-agent: Googlebot
+Allow: /
+
+# Allow Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Allow Google AI crawlers (SGE)
+User-agent: Google-Extended
+Allow: /
+
+# Block sensitive directories
+Disallow: /blogs/wp-admin/
+Allow: /blogs/wp-admin/admin-ajax.php
+Disallow: /blogs/wp-includes/
+Disallow: /blogs/wp-content/plugins/
+Disallow: /blogs/wp-content/themes/
+Disallow: /includes/
+Disallow: /config.php
+# Allow all service pages and important PHP files
+Allow: /pages/ondemand/*.php
+Allow: /index.php
+Allow: /about.php
+Allow: /contact.php
+Allow: /careers.php
+# Only block specific PHP files, not all
+Disallow: /admin/*.php
+Disallow: /test-*.php
+
+# Allow important pages
+Allow: /about
+Allow: /contact
+Allow: /careers
+Allow: /blogs/
+
+# Crawl-delay (optional, remove if not needed)
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://techweblabs.com/sitemap.xml
+
+

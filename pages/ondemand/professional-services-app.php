@@ -13,7 +13,7 @@
     <meta property="og:title" content="Professional Services App Development | Techweblabs">
     <meta property="og:description" content="Techweblabs offers top-notch professional services app development solutions. Experience the best in mobile app development.">
     <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/professional-services-app">
+    <meta property="og:url" content="https://techweblabs.com/handyman-mobile-app-development">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
@@ -55,7 +55,7 @@
     <meta property="og:title" content="Professional Services App Development | Techweblabs">
     <meta property="og:description" content="Techweblabs offers top-notch professional services app development solutions. Experience the best in mobile app development.">
     <meta property="og:image" content="https://www.techweblabs.com/images/mobile-app-development.jpg">
-    <meta property="og:url" content="https://www.techweblabs.com/professional-services-app">
+    <meta property="og:url" content="https://techweblabs.com/handyman-mobile-app-development">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
@@ -121,7 +121,7 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/config.php');
 ?> <?php
 include (ROOT_DIR . 'homepage/header.php');
 ?> 
-        <section class="breadcrumb-areav2" data-background="images/banner/8.jpg">
+        <section class="breadcrumb-areav2" data-background="images/banner-5.jpg">
         <div class="container">
            
             <div class="row">

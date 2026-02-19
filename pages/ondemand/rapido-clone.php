@@ -108,7 +108,7 @@ include_once ($_SERVER['DOCUMENT_ROOT'] . '/techweblabs_website/config.php');
 ?> <?php
 include (ROOT_DIR . 'homepage/header.php');
 ?>
-<section class="breadcrumb-areav2" data-background="images/banner/8.jpg">
+<section class="breadcrumb-areav2" data-background="images/banner-5.jpg">
 <div class="container">
 <div class="row">
 <div class="col-lg-6 col-md-12" data-aos="fade-right" data-aos-duration="1500">
