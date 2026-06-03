@@ -3,8 +3,8 @@
 		<div class="row">
 			<div class="col-lg-6 v-center">
 				<div class="hero-heading-sec2 niwax" data-rellax-speed="3">
-					<h1 class="wow fadeIn" data-wow-delay="0.2s">Who is TechWebLabs? Leading Mobile App & Web Development Company</h1>
-					<p class="wow fadeIn" data-wow-delay="0.4s"><strong>TechWebLabs is a premier mobile app and web development company in Hyderabad, India.</strong> We provide custom app development, Flutter development, AI software solutions, and digital transformation services for startups and enterprises worldwide. Our expertise includes iOS, Android, React Native, and full-stack web development.</p>
+					<h1 class="wow fadeIn" data-wow-delay="0.2s">Best Mobile App Development Company in Hyderabad – Hire Flutter, Android &amp; iOS Developers</h1>
+					<p class="wow fadeIn" data-wow-delay="0.4s"><strong>TechWebLabs is the #1 mobile app development company in Hyderabad.</strong> Hire dedicated Flutter, Android &amp; iOS developers to build custom, high-performance mobile apps for startups and enterprises. We deliver scalable digital products on time and within budget.</p>
 					<div class="content-sec  d-flex mt30 v-center text-w wow fadeIn" data-wow-delay="0.6s">
 						<div class="mr25"><a href="https://wa.link/fucwsq" class="btn-main bg-btn4 lnk ">GET
 								STARTED<i class="fas fa-chevron-right fa-icon"></i><span class="circle"></span></a></div>
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="col-lg-6 v-center">
-				<div class="app-hero-bnr wow fadeIn" data-wow-delay="0.4s"> <img src="images/Bg.png" alt="TechWebLabs - Best Flutter App Development Company and Startup App Developers" class="img-fluid" loading="lazy" width="600" height="400">
+				<div class="app-hero-bnr wow fadeIn" data-wow-delay="0.4s"> <img src="images/Bg.png" alt="TechWebLabs - Best Mobile App Development Company in Hyderabad | Hire Flutter, Android &amp; iOS Developers" class="img-fluid" loading="lazy" width="600" height="400">
 				</div>
 			</div>
 		</div>
@@ -53,8 +53,8 @@ include('pages/homepage/components/services.php');
 			<div class="col-lg-6">
 				<div class="common-heading text-l">
 					<span>Why Choose Us</span>
-					<h2 class="mb20">Why is TechWebLabs the <span class="text-second text-bold">Best Flutter App Development Company</span> and Top Startup App Development Partner?</h2>
-					<p><strong>TechWebLabs ranks among top app development companies</strong> because we deliver custom mobile apps, web solutions, and AI software development with proven expertise in Flutter, React Native, and enterprise solutions. We specialize in startup app development, helping businesses transform ideas into successful digital products.</p>
+					<h2 class="mb20">Why TechWebLabs is the <span class="text-second text-bold">Best Mobile App Development Company in Hyderabad</span> to Hire Flutter, Android &amp; iOS Developers?</h2>
+					<p><strong>TechWebLabs stands out as Hyderabad's top mobile app development company</strong> with a proven team of Flutter, Android, and iOS experts. We build custom mobile apps that are fast, secure, and scalable — helping startups launch MVPs and enterprises modernise their digital presence with confidence.</p>
 					<div class="itm-media-object mt40 tilt-3d">
 						<div class="media">
 							<div class="img-ab- base" data-tilt data-tilt-max="20" data-tilt-speed="1000"><img src="images/icons-computers.svg" alt="icon" class="layer"></div>

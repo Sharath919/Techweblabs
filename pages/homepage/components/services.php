@@ -5,9 +5,8 @@
 					<div class="col-lg-6">
 						<div class="common-heading ptag">
 							<span>Service</span>
-							<h2>Our Services</h2>
-							<p class="mb30">We think big and have hands in all leading technology
-								platforms to provide you wide array of services.</p>
+							<h2>Mobile App Development Services in Hyderabad</h2>
+							<p class="mb30">From Flutter and Android to iOS and web — TechWebLabs delivers end-to-end mobile app development services tailored for startups and enterprises across Hyderabad and beyond.</p>
 						</div>
 					</div>
 				</div>

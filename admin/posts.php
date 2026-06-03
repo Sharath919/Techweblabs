@@ -5,6 +5,7 @@
 define('ADMIN_PANEL', true);
 require_once __DIR__ . '/config/auth.php';
 require_once __DIR__ . '/config/db_config.php';
+require_once __DIR__ . '/includes/seo-helper.php';
 requireLogin();
 
 $db = getDB();
@@ -113,6 +114,7 @@ $posts = $stmt->fetchAll();
                                 <th>Slug</th>
                                 <th>Author</th>
                                 <th>Status</th>
+                                <th>SEO</th>
                                 <th>Views</th>
                                 <th>Published</th>
                                 <th>Actions</th>
@@ -121,10 +123,22 @@ $posts = $stmt->fetchAll();
                         <tbody>
                             <?php if (empty($posts)): ?>
                                 <tr>
-                                    <td colspan="7" class="text-center">No posts found. <a href="post-new.php">Create your first post</a></td>
+                                    <td colspan="8" class="text-center">No posts found. <a href="post-new.php">Create your first post</a></td>
                                 </tr>
                             <?php else: ?>
-                                <?php foreach ($posts as $post): ?>
+                                <?php foreach ($posts as $post):
+                                    $articleData = [
+                                        'title' => $post['title'] ?? '',
+                                        'meta_title' => $post['meta_title'] ?? '',
+                                        'meta_description' => $post['meta_description'] ?? '',
+                                        'content' => $post['content'] ?? '',
+                                        'seo_focus_keyword' => $post['seo_focus_keyword'] ?? '',
+                                    ];
+                                    $seo = calculateSEOScore($articleData);
+                                    $pct = $seo['percentage'] ?? 0;
+                                    $grade = $seo['grade'] ?? 'F';
+                                    $gradeColor = $seo['grade_color'] ?? '#ef4444';
+                                ?>
                                     <tr>
                                         <td>
                                             <strong><?php echo htmlspecialchars($post['title']); ?></strong>
@@ -141,6 +155,12 @@ $posts = $stmt->fetchAll();
                                         <td>
                                             <span class="badge badge-<?php echo $post['status']; ?>">
                                                 <?php echo ucfirst($post['status']); ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 600; color: <?php echo htmlspecialchars($gradeColor); ?>;" title="Grade: <?php echo htmlspecialchars($grade); ?>">
+                                                <span style="min-width: 2rem;"><?php echo (int)$pct; ?>%</span>
+                                                <span style="font-size: 0.75rem; background: <?php echo htmlspecialchars($gradeColor); ?>20; padding: 0.15rem 0.35rem; border-radius: 4px;"><?php echo htmlspecialchars($grade); ?></span>
                                             </span>
                                         </td>
                                         <td><?php echo number_format($post['views']); ?></td>

@@ -82,6 +82,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+
+    if ($action === 'bulk_publish_articles') {
+        $articlesJson = $_POST['articles'] ?? '';
+        $articles = $articlesJson ? json_decode($articlesJson, true) : null;
+        header('Content-Type: application/json');
+        if (!is_array($articles) || empty($articles)) {
+            echo json_encode(['success' => false, 'error' => 'No articles to publish', 'published' => 0, 'failed' => 0, 'results' => []]);
+            exit;
+        }
+        $published = 0;
+        $failed = 0;
+        $results = [];
+        foreach ($articles as $article) {
+            if (!empty($article['error'])) {
+                $results[] = ['title' => $article['title'] ?? 'Unknown', 'success' => false, 'error' => $article['message'] ?? 'Skipped (generation error)'];
+                $failed++;
+                continue;
+            }
+            $result = publishAIGeneratedArticle($article, $user['id']);
+            if ($result['success']) {
+                $results[] = ['title' => $article['title'] ?? 'Untitled', 'success' => true, 'post_id' => $result['post_id'] ?? null];
+                $published++;
+            } else {
+                $results[] = ['title' => $article['title'] ?? 'Untitled', 'success' => false, 'error' => $result['error'] ?? 'Failed to publish'];
+                $failed++;
+            }
+        }
+        echo json_encode(['success' => true, 'published' => $published, 'failed' => $failed, 'results' => $results]);
+        exit;
+    }
 }
 
 // Get existing categories for dropdown
@@ -907,8 +937,16 @@ $categories = $db->query("SELECT id, name, slug FROM blog_categories ORDER BY na
                 section.innerHTML = '<p>No articles generated.</p>';
                 return;
             }
+            const publishableCount = articles.filter(a => !a.error).length;
             section.innerHTML = `
-                <h3>✅ Generated ${articles.length} article(s)</h3>
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <h3 style="margin: 0;">✅ Generated ${articles.length} article(s)</h3>
+                    ${publishableCount > 0 ? `
+                        <button type="button" class="btn-ai" onclick="runBulkPublish()" style="background: linear-gradient(135deg, #10b981, #059669); padding: 0.5rem 1rem;">
+                            Publish all (${publishableCount})
+                        </button>
+                    ` : ''}
+                </div>
                 ${articles.map((art, idx) => {
                     if (art.error) {
                         return `<div class="bulk-result-item" style="border-color: #fecaca;">
@@ -950,6 +988,64 @@ $categories = $db->query("SELECT id, name, slug FROM blog_categories ORDER BY na
             if (!art || art.error) return;
             currentArticleData = { ...art, status: 'draft' };
             publishArticle();
+        }
+
+        async function runBulkPublish() {
+            const toPublish = bulkGeneratedArticles.filter(a => !a.error);
+            if (!toPublish.length) {
+                alert('No articles to publish. Only successfully generated articles can be published.');
+                return;
+            }
+            if (!confirm(`Publish all ${toPublish.length} article(s) now? They will be live on your website.`)) return;
+
+            const overlay = document.getElementById('bulk-progress-overlay');
+            const progressFill = document.getElementById('bulk-progress-fill');
+            const progressText = document.getElementById('bulk-progress-text');
+            const progressStatus = document.getElementById('bulk-progress-status');
+            const overlayTitle = overlay ? overlay.querySelector('h3') : null;
+            if (overlayTitle) overlayTitle.textContent = 'Publishing articles...';
+            overlay.style.display = 'flex';
+            progressFill.style.width = '0%';
+            progressText.textContent = 'Sending request...';
+            progressStatus.textContent = '';
+
+            try {
+                const formData = new FormData();
+                formData.append('action', 'bulk_publish_articles');
+                formData.append('articles', JSON.stringify(toPublish));
+                const response = await fetch('ai-article-generator.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                progressFill.style.width = '100%';
+                progressText.textContent = 'Done!';
+                progressStatus.textContent = `Published ${data.published || 0}, failed ${data.failed || 0}.`;
+                await new Promise(r => setTimeout(r, 800));
+                overlay.style.display = 'none';
+                progressFill.style.width = '0%';
+                if (overlayTitle) overlayTitle.textContent = 'Generating articles...';
+
+                if (data.success) {
+                    const msg = data.failed > 0
+                        ? `Published ${data.published} article(s). ${data.failed} failed.`
+                        : `All ${data.published} article(s) published successfully!`;
+                    alert(msg);
+                    if (data.published > 0) {
+                        if (confirm('View blog posts list?')) {
+                            window.location.href = 'posts.php?msg=' + encodeURIComponent(msg);
+                        }
+                    }
+                } else {
+                    alert('Bulk publish failed: ' + (data.error || 'Unknown error'));
+                }
+            } catch (err) {
+                overlay.style.display = 'none';
+                progressFill.style.width = '0%';
+                if (overlayTitle) overlayTitle.textContent = 'Generating articles...';
+                console.error(err);
+                alert('Error publishing articles. Please try again.');
+            }
         }
         
         function selectTopic(index) {

@@ -41,6 +41,9 @@ $themes = [
 	'pharmeasy-clone' => 'linear-gradient(45deg, #00bcd4 0%, #0097a7 50%, #00838f 100%)',
 	'1mg-clone' => 'linear-gradient(45deg, #ff7043 0%, #f4511e 50%, #e64a19 100%)',
 	'healthcare-apps' => 'linear-gradient(45deg, #00bcd4 0%, #0097a7 50%, #00838f 100%)',
+
+	// Dating / Social Apps
+	'frnd-dating-app' => 'linear-gradient(45deg, #e91e63 0%, #c2185b 50%, #ad1457 100%)',
 	
 	// Other Services
 	'urban-clone-app' => 'linear-gradient(45deg, #009688 0%, #26a69a 50%, #00796b 100%)',
@@ -173,6 +176,7 @@ $gradient = $themes[$slug] ?? $themes['default'];
 											<div class="sub-menu-column">
 												<ul>
 													<li><a href="1mg-clone"><img src="images/business/1mg.png" class="icon-spacing" alt="1mg Clone App Development Icon" />1mg</a></li>
+													<li><a href="frnd-dating-app"><img src="images/icons/services/dating.png" class="icon-spacing" alt="Frnd Dating App Development Hyderabad" />Frnd</a></li>
 													<li><a href="pharmeasy-clone"><img src="images/business/PharmEasy.png" class="icon-spacing" alt="PharmEasy Clone App Development Icon" />PharmEasy</a></li>
 													<li><a href="uber-clone"><img src="images/business/Ubers.png" class="icon-spacing" alt="Uber Clone App Development Icon" />Uber</a></li>
 													<li><a href="lyft-clone"><img src="images/business/Lyft.png" class="icon-spacing" alt="Lyft Clone App Development Icon" />Lyft</a></li>

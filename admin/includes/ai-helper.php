@@ -448,7 +448,9 @@ function generateArticle($topic, $keywords = '', $length = 'medium', $options = 
         $imagesListEscaped = implode("\n   - ", $relevantImages);
 
         // Build comprehensive prompt
-        $prompt = "Write a comprehensive, 100% SEO-optimized blog article for TechWebLabs (a leading mobile app and web development company based in Hyderabad, India, with 6+ years of experience) on the topic: \"$topic\"
+     
+
+$prompt = "Write a comprehensive, 100% SEO-optimized blog article for TechWebLabs (a leading mobile app and web development company based in Hyderabad, India, with 6+ years of experience) on the topic: \"$topic\"
 
 Target keywords: $keywords
 
@@ -461,6 +463,7 @@ CRITICAL REQUIREMENTS (aim for 100% SEO score):
    - Main body with multiple H2 and H3 subheadings
    - Conclusion with call-to-action
    - Use proper HTML heading hierarchy (H2 for main sections, H3 for subsections)
+   - PRIMARY KEYWORD must appear naturally within the first 100 words of the article body (critical for Google ranking)
 
 2. INTERNAL LINKING (MANDATORY - EVERY ARTICLE):
    - EVERY article MUST include at least 3-5 internal links to TechWebLabs pages. No exceptions.
@@ -477,6 +480,7 @@ CRITICAL REQUIREMENTS (aim for 100% SEO score):
      * \"best company for mobile app development in Hyderabad\" or \"trusted app development company in India\"
    - Add a clear conclusion section that positions TechWebLabs as the best choice (e.g. \"When it comes to mobile app development in Hyderabad, TechWebLabs stands out as the preferred partner...\")
    - These phrases help the TechWebLabs website rank for searches like \"best mobile app development company Hyderabad\", \"app development company in Hyderabad\"
+   - Include a short 2-sentence author/company authority blurb that mentions TechWebLabs' 6+ years of experience and domain expertise, to build E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) trust signals with Google.
 
 4. FAQ SECTION (REQUIRED):
    - Generate 4-6 relevant FAQs related to the topic
@@ -491,7 +495,9 @@ CRITICAL REQUIREMENTS (aim for 100% SEO score):
    - Title: 50-60 characters, include primary keyword in first 60 chars
    - Meta description: 150-160 characters, include focus keyword
    - Include primary keyword naturally in content (1-2% density), in at least one H2
-   - Use semantic keywords; avoid keyword stuffing
+   - Use semantic/LSI keywords: include 5-8 LSI (Latent Semantic Indexing) / semantic keywords — related terms, synonyms, and conceptually related phrases — woven naturally throughout the content. Output these in the `lsi_keywords` field.
+   - Avoid keyword stuffing
+   - Aim for Flesch reading ease score of 60-70: use short sentences (15-20 words average), plain language, and avoid unexplained jargon. This improves both readability and Google rankings.
 
 7. IMAGES (STRICT - USE ONLY THIS LIST):
    - You MUST use ONLY these exact image URLs. Do NOT invent, guess, or create any other URL. Copy each URL character-for-character:
@@ -515,20 +521,31 @@ CRITICAL REQUIREMENTS (aim for 100% SEO score):
 Return ONLY a JSON object with this exact structure:
 {
   \"title\": \"SEO-optimized title with primary keyword (50-60 chars, include primary keyword)\",
+  \"slug\": \"seo-friendly-url-slug with primary keyword, max 60 characters, lowercase, hyphens only, no stop words (e.g. 'mobile-app-development-hyderabad')\",
   \"meta_description\": \"Compelling meta description with call-to-action (150-160 chars, include primary keyword)\",
   \"meta_keywords\": \"$keywords, plus 3-5 related keywords\",
   \"seo_focus_keyword\": \"Primary keyword from the list\",
+  \"lsi_keywords\": \"5-8 LSI/semantic keywords naturally related to the topic and primary keyword, comma-separated (e.g. app development cost, mobile app features, app development process, etc.)\",
   \"excerpt\": \"2-3 sentence engaging excerpt highlighting key value\",
+  \"og_title\": \"Open Graph title for social sharing (same as or slight variation of main title, max 60 chars)\",
+  \"og_description\": \"Open Graph description for Facebook/LinkedIn sharing (150-160 chars, include primary keyword)\",
+  \"og_image\": \"One exact image URL from the allowed list above — used as the social share preview image\",
+  \"twitter_title\": \"Twitter/X card title (max 60 chars, include primary keyword)\",
+  \"twitter_description\": \"Twitter/X card description (max 125 chars, punchy and keyword-rich)\",
+  \"schema_markup\": \"A complete JSON-LD string (escaped for JSON) containing TWO schema blocks: (1) Article schema with @type Article, headline, description, author (TechWebLabs), publisher (TechWebLabs), datePublished, and image; (2) FAQPage schema using the faqs array below with @type FAQPage and mainEntity array of Questions and Answers. Wrap both in an @graph array under a single <script type='application/ld+json'> tag.\",
   \"content\": \"Full article content in HTML format. MUST include:
+    - Primary keyword in the FIRST 100 WORDS of the article body (critical)
     - Table of contents at the beginning (after intro, before first H2) with links to all headings
     - Proper <h2> and <h3> headings (each H2 and H3 needs an id attribute for TOC links: id=\\\"toc-section-name\\\")
     - <p> paragraphs
     - 2-3 images using ONLY the exact URLs from the allowed list above (no other image URLs)
     - 3-5 internal links to TechWebLabs (format: <a href=\\\"https://techweblabs.com/{url}\\\">{anchor}</a>) - MANDATORY for every article
-    - TechWebLabs mentioned 3-4 times plus phrases like \"best mobile app development company in Hyderabad\", \"leading app development company in Hyderabad\"
+    - TechWebLabs mentioned 3-4 times plus phrases like 'best mobile app development company in Hyderabad', 'leading app development company in Hyderabad'
+    - A 2-sentence E-E-A-T authority blurb about TechWebLabs' 6+ years of experience (place near intro or conclusion)
     - FAQ section with 4-6 questions (use <h3>FAQ</h3> and structure questions/answers)
     - Pros/cons section if applicable (use <h3>Pros and Cons</h3>)
-    - Conclusion stating TechWebLabs is the best choice for app development in Hyderabad/India\",
+    - Conclusion stating TechWebLabs is the best choice for app development in Hyderabad/India
+    - Short sentences (15-20 words avg) and plain language for readability\",
   \"word_count\": number,
   \"faqs\": [
     {\"question\": \"Question text\", \"answer\": \"Answer text\"},
@@ -540,11 +557,17 @@ Return ONLY a JSON object with this exact structure:
   } (only if applicable, otherwise null)
 }
 
-IMPORTANT: 
+IMPORTANT:
 - EVERY article MUST have 3-5 internal links to https://techweblabs.com/ pages (service pages, about, etc.)
 - TechWebLabs must be positioned as the best mobile app development company in Hyderabad and India for Google ranking
 - Include ranking phrases naturally: best app development company Hyderabad, leading mobile app development company in Hyderabad
-- Content should be comprehensive, detailed, and valuable with proper HTML structure";
+- Primary keyword MUST appear in the first 100 words
+- Include FAQ schema + Article schema in the `schema_markup` field (JSON-LD)
+- Include all social meta fields: og_title, og_description, og_image, twitter_title, twitter_description
+- Include lsi_keywords field with 5-8 semantic/related keywords
+- Include slug field (SEO-friendly URL, max 60 chars, hyphens only)
+- Content should be comprehensive, detailed, and valuable with proper HTML structure
+- Use short sentences and plain language (Flesch reading ease 60-70)";
         
         $response = callOpenAI($prompt, 4000);
         
@@ -768,15 +791,36 @@ function generateAndUploadBanner($title, $slug) {
         }
     }
 
-    $prompt = "Professional blog banner image for a technology article. Topic: " . substr($title, 0, 200) . ". Style: modern, clean, gradient background, tech-related imagery (abstract app development, mobile devices, or software). No text or text overlays. High quality, suitable for article thumbnail.";
+    $titleShort = trim(substr($title, 0, 80));
+    $prompt = "Create a vibrant, friendly ILLUSTRATIVE BANNER for a blog article. Clean cartoonish illustration style, approachable and bright. Wide horizontal layout.
+
+COLORS AND BACKGROUND:
+- Soft light blue sky at top with faint clouds; lower area transitions to light green hazy landscape with stylized buildings, trees, and greenery. Small sparkle or star-like details in the upper area. Sense of depth and a clean urban or service environment.
+
+TITLE AND CTA:
+- TOP CENTER: Prominent headline. The exact article title must be: \"" . addslashes($titleShort) . "\". Use dark text for most of the title and BRIGHT GREEN for the key phrase or last important word (e.g. brand name or \"Complete Guide\").
+- BOTTOM: A rounded rectangular button with soft yellow background and dark text, e.g. \"Read Step-by-Step Tutorial\" or \"Read Guide\" or \"Learn More\".
+
+LEFT SIDE:
+- A modern smartphone (teal-green or green bezel) showing an app interface relevant to the article topic (e.g. grocery/delivery: categories like VEGETABLES, FRUITS, ADD buttons; healthcare: health app; generic: app icons). In front of the phone: a paper bag or container with items that match the topic (e.g. fresh produce, groceries, or relevant products). Next to it: golden coins, green banknotes, and a small credit card to suggest payments or value.
+
+CENTER:
+- A bright yellow delivery scooter or vehicle (or topic-relevant action element) with a green delivery box or cargo showing a shopping cart or app logo. A location pin or speech bubble with text like \"Delivery 10-20 min\" or similar. A dashed golden or yellow line (delivery route) connecting map pins from left toward the right. In the background: stylized city or town with light green buildings, striped awnings, lush greenery.
+
+RIGHT SIDE:
+- A smiling delivery person or professional (e.g. in bright green polo and cap, or topic-appropriate uniform) holding a smartphone in one hand and a brown paper bag or package in the other, with a small logo on the bag. Friendly, approachable pose.
+
+STYLE RULES:
+- Illustrated, flat to semi-flat. NOT photorealistic. Friendly, bright, slightly cartoonish. Color palette: greens, yellows, earthy tones, light blue, brown for bags. All text in English and readable. Reflect the article topic in the visuals (e.g. grocery/delivery: app with categories, grocery bags, scooter; healthcare: health app, medical items; app development: app UI, developer). Include the exact article title at the top and the yellow CTA button at the bottom.";
     $url = 'https://api.openai.com/v1/images/generations';
     $data = [
         'model' => 'dall-e-3',
         'prompt' => $prompt,
         'n' => 1,
         'size' => '1792x1024',
-        'quality' => 'standard',
-        'response_format' => 'url'
+        'quality' => 'hd',
+        'response_format' => 'url',
+        'style' => 'natural'
     ];
 
     $ch = curl_init($url);

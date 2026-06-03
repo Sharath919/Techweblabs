@@ -40,6 +40,7 @@ function getBreadcrumbGradient($slug = '') {
 		// Healthcare/Pharmacy Apps
 		'pharmeasy-clone' => 'linear-gradient(45deg, #00bcd4 0%, #0097a7 50%, #00838f 100%)',
 		'1mg-clone' => 'linear-gradient(45deg, #ff7043 0%, #f4511e 50%, #e64a19 100%)',
+		'frnd-dating-app' => 'linear-gradient(45deg, #e91e63 0%, #c2185b 50%, #ad1457 100%)',
 		'healthcare-apps' => 'linear-gradient(45deg, #00bcd4 0%, #0097a7 50%, #00838f 100%)',
 		'healthcare-mobile-app-development' => 'linear-gradient(45deg, #00bcd4 0%, #0097a7 50%, #00838f 100%)',
 		'on-demand-home-services-app-development' => 'linear-gradient(45deg, #009688 0%, #26a69a 50%, #00796b 100%)',

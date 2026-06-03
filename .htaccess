@@ -63,8 +63,9 @@
     RewriteRule ^hrm-software-development$ /pages/ondemand/human-resource-app.php [L]
     RewriteRule ^inventory-management-software-development$ /pages/ondemand/inventory-management.php [L]
     RewriteRule ^general-marketplaces-app$ /pages/ondemand/general-marketplaces-app.php [L]
+    RewriteRule ^frnd-dating-app$ /pages/ondemand/frnd-dating-app.php [L]
 
-    # Try to match old-style two-word slugs (fallback for existing URLs)
+    # Two-word slugs
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^([^/]+)-([^/]+)$ /pages/ondemand/$1-$2.php [L]

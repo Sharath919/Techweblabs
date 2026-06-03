@@ -1,16 +1,8 @@
 	<div class="col-lg-6">
 						<div class="common-heading text-l">
-							<h2 class="mb30"><span class="text-second text-bold">Techweblabs</span>
-								Mobile
-								App Development Company</h2>
-							<p>At Techweblabs, we take pride in being a top-rated mobile app
-								development company. Our team brings together creativity and extensive
-								experience to deliver cutting-edge mobile app solutions. Located in
-								India, we have established ourselves as a leading force in the industry.</p>
-							<p class="mt10">Techweblabs is your go-to destination for cutting-edge
-								mobile app development solutions in Hyderabad, India. Renowned as a
-								top-rated company, we pride ourselves on being the creative powerhouse
-								behind numerous successful mobile applications.</p>
+							<h2 class="mb30"><span class="text-second text-bold">TechWebLabs</span> – #1 Mobile App Development Company in Hyderabad</h2>
+							<p>At TechWebLabs, we specialise in building custom mobile apps for Android, iOS, and Flutter. Our Hyderabad-based team of expert developers delivers innovative, high-performance mobile solutions for startups and enterprises across India and worldwide.</p>
+							<p class="mt10">As a trusted mobile app development partner in Hyderabad, TechWebLabs combines creative design with robust engineering to transform your app ideas into successful digital products — on time and within budget.</p>
 							<p class="mt10"> <span class="text-bold">At Techweblabs, we don't just
 									create apps; we craft exceptional user
 									experiences that drive success. Join us on your journey to mobile app

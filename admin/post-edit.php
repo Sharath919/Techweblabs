@@ -9,7 +9,7 @@ requireLogin();
 
 $db = getDB();
 $error = '';
-$success = isset($_GET['success']) ? 'Post ' . htmlspecialchars($_GET['success']) . ' successfully!' : '';
+$success = isset($_GET['success']) ? (stripos($_GET['success'], 'SEO') !== false ? htmlspecialchars($_GET['success']) : 'Post ' . htmlspecialchars($_GET['success']) . ' successfully!') : '';
 
 // Get post ID
 $postId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -38,6 +38,53 @@ $postTags->execute([$postId]);
 $postTagNames = array_column($postTags->fetchAll(), 'name');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Regenerate / Fix SEO via AI
+    if (isset($_POST['action']) && $_POST['action'] === 'fix_seo') {
+        require_once __DIR__ . '/includes/ai-helper.php';
+        $articleData = [
+            'title' => $post['title'] ?? '',
+            'meta_title' => $post['meta_title'] ?? '',
+            'meta_description' => $post['meta_description'] ?? '',
+            'meta_keywords' => $post['meta_keywords'] ?? '',
+            'excerpt' => $post['excerpt'] ?? '',
+            'content' => $post['content'] ?? '',
+            'featured_image' => $post['featured_image'] ?? '',
+            'og_image' => $post['og_image'] ?? '',
+            'seo_focus_keyword' => $post['seo_focus_keyword'] ?? '',
+            'slug' => $post['slug'] ?? '',
+        ];
+        $result = fixArticleSEOIssues($articleData);
+        if (!empty($result['success']) && !empty($result['article'])) {
+            $fixed = $result['article'];
+            $metaTitle = $fixed['title'] . ' | TechWebLabs';
+            if (mb_strlen($metaTitle) > 70) {
+                $metaTitle = mb_substr($fixed['title'], 0, 67) . '...';
+            }
+            $stmt = $db->prepare("
+                UPDATE blog_posts SET
+                    title = ?, meta_title = ?, meta_description = ?, meta_keywords = ?, 
+                    excerpt = ?, content = ?, featured_image = ?, og_image = ?, seo_focus_keyword = ?
+                WHERE id = ?
+            ");
+            $stmt->execute([
+                $fixed['title'],
+                $metaTitle,
+                $fixed['meta_description'] ?? $post['meta_description'],
+                is_array($fixed['meta_keywords'] ?? null) ? implode(', ', $fixed['meta_keywords']) : ($fixed['meta_keywords'] ?? $post['meta_keywords']),
+                $fixed['excerpt'] ?? $post['excerpt'],
+                $fixed['content'] ?? $post['content'],
+                $fixed['featured_image'] ?? $post['featured_image'],
+                $fixed['og_image'] ?? $post['og_image'],
+                $fixed['seo_focus_keyword'] ?? $post['seo_focus_keyword'],
+                $postId
+            ]);
+            $newScore = $fixed['seo_score']['percentage'] ?? null;
+            $msg = 'SEO fixed successfully.' . ($newScore !== null ? ' New score: ' . $newScore . '%' : '');
+            header('Location: post-edit.php?id=' . $postId . '&success=' . urlencode($msg));
+            exit;
+        }
+        $error = $result['error'] ?? 'Failed to fix SEO. Check AI configuration.';
+    } else {
     $title = sanitizeInput($_POST['title'] ?? '');
     $slug = sanitizeInput($_POST['slug'] ?? '');
     $content = $_POST['content'] ?? '';
@@ -159,6 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Error updating post: ' . $e->getMessage();
         }
     }
+    }
 }
 
 // Get categories for dropdown
@@ -179,9 +227,17 @@ $categories = $db->query("SELECT * FROM blog_categories ORDER BY name")->fetchAl
         <?php include 'includes/sidebar.php'; ?>
         
         <main class="main-content">
-            <div class="page-header">
-                <h1>Edit Blog Post</h1>
-                <a href="posts.php" class="btn-link">← Back to Posts</a>
+            <div class="page-header" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+                <h1 style="margin: 0;">Edit Blog Post</h1>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <form method="post" action="" style="margin: 0;" onsubmit="return confirm('Run AI to fix SEO (meta, content, banner)? This may take a minute.');">
+                        <input type="hidden" name="action" value="fix_seo">
+                        <button type="submit" class="btn" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none;">
+                            Regenerate / Fix SEO
+                        </button>
+                    </form>
+                    <a href="posts.php" class="btn-link">← Back to Posts</a>
+                </div>
             </div>
             
             <?php if ($error): ?>
