@@ -5,11 +5,14 @@
 define('ADMIN_PANEL', true);
 require_once __DIR__ . '/config/auth.php';
 require_once __DIR__ . '/config/db_config.php';
+require_once __DIR__ . '/includes/upload-helper.php';
 requireLogin();
 
 $db = getDB();
 $error = '';
 $success = '';
+$featuredImageValue = '';
+$ogImageValue = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = sanitizeInput($_POST['title'] ?? '');
@@ -20,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $metaDescription = sanitizeInput($_POST['meta_description'] ?? '');
     $metaKeywords = sanitizeInput($_POST['meta_keywords'] ?? '');
     $focusKeyword = sanitizeInput($_POST['focus_keyword'] ?? '');
-    $featuredImage = sanitizeInput($_POST['featured_image'] ?? '');
     $ogImage = sanitizeInput($_POST['og_image'] ?? '');
     $status = sanitizeInput($_POST['status'] ?? 'draft');
     $schemaType = sanitizeInput($_POST['schema_type'] ?? 'Article');
@@ -29,9 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($slug) && !empty($title)) {
         $slug = generateSlug($title);
     }
+
+    $featuredResult = resolveFeaturedImage(
+        $_POST['featured_image'] ?? '',
+        $_FILES['featured_image_upload'] ?? null,
+        $slug
+    );
+    $featuredImage = $featuredResult['url'];
     
     // Validate
-    if (empty($title) || empty($content)) {
+    if ($featuredResult['error']) {
+        $error = $featuredResult['error'];
+    } elseif (empty($title) || empty($content)) {
         $error = 'Title and content are required.';
     } elseif (empty($slug)) {
         $error = 'Slug is required.';
@@ -121,6 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Error creating post: ' . $e->getMessage();
         }
     }
+
+    $featuredImageValue = !empty($featuredImage) ? $featuredImage : trim($_POST['featured_image'] ?? '');
+    $ogImageValue = $_POST['og_image'] ?? '';
 }
 
 // Get categories for dropdown
@@ -152,7 +166,7 @@ $categories = $db->query("SELECT * FROM blog_categories ORDER BY name")->fetchAl
                 </div>
             <?php endif; ?>
             
-            <form method="POST" action="" class="content-section">
+            <form method="POST" action="" class="content-section" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="form-group" style="flex: 2;">
                         <label for="post-title">Post Title *</label>
@@ -222,18 +236,7 @@ $categories = $db->query("SELECT * FROM blog_categories ORDER BY name")->fetchAl
                     <div class="help-text">Primary keyword for this post</div>
                 </div>
                 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="featured-image">Featured Image URL</label>
-                        <input type="url" id="featured-image" name="featured_image" value="<?php echo htmlspecialchars($_POST['featured_image'] ?? ''); ?>">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="og-image">Open Graph Image URL</label>
-                        <input type="url" id="og-image" name="og_image" value="<?php echo htmlspecialchars($_POST['og_image'] ?? ''); ?>">
-                        <div class="help-text">Leave empty to use featured image</div>
-                    </div>
-                </div>
+                <?php include __DIR__ . '/includes/featured-image-field.php'; ?>
                 
                 <div class="form-group">
                     <label for="schema-type">Schema Type</label>

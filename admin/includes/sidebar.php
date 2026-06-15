@@ -65,6 +65,15 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             </li>
             <?php endif; ?>
             <li>
+                <a href="change-password.php" class="<?php echo $currentPage == 'change-password.php' ? 'active' : ''; ?>">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    Change Password
+                </a>
+            </li>
+            <li>
                 <a href="/" target="_blank">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>

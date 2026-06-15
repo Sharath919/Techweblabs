@@ -72,6 +72,48 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Featured image preview (upload or URL)
+    const featuredUpload = document.getElementById('featured-image-upload');
+    const featuredPreview = document.getElementById('featured-image-preview');
+    const featuredUrl = document.getElementById('featured-image');
+
+    function showFeaturedPreview(src) {
+        if (!featuredPreview || !src) {
+            return;
+        }
+
+        featuredPreview.classList.remove('featured-image-preview--empty');
+        featuredPreview.innerHTML = '<img src="' + src.replace(/"/g, '&quot;') + '" alt="Featured image preview">';
+    }
+
+    if (featuredUpload && featuredPreview) {
+        featuredUpload.addEventListener('change', function() {
+            if (!this.files || !this.files[0]) {
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                showFeaturedPreview(e.target.result);
+                if (featuredUrl) {
+                    featuredUrl.value = '';
+                }
+            };
+            reader.readAsDataURL(this.files[0]);
+        });
+    }
+
+    if (featuredUrl && featuredPreview) {
+        featuredUrl.addEventListener('input', function() {
+            if (this.value.trim()) {
+                showFeaturedPreview(this.value.trim());
+                if (featuredUpload) {
+                    featuredUpload.value = '';
+                }
+            }
+        });
+    }
 });
 
 function generateSlug() {

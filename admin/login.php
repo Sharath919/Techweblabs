@@ -165,21 +165,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #3c3;
             border: 1px solid #cfc;
         }
-        
-        .default-credentials {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f5f5f5;
-            border-radius: 6px;
-            font-size: 12px;
-            color: #666;
-        }
-        
-        .default-credentials strong {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
     </style>
 </head>
 <body>
@@ -210,13 +195,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <button type="submit" class="btn">Login</button>
         </form>
-        
-        <div class="default-credentials">
-            <strong>Default Credentials:</strong>
-            Username: admin<br>
-            Password: admin123<br>
-            <small style="color: #999;">(Please change this after first login!)</small>
-        </div>
     </div>
 </body>
 </html>

@@ -6,6 +6,7 @@ define('ADMIN_PANEL', true);
 require_once __DIR__ . '/config/auth.php';
 require_once __DIR__ . '/config/db_config.php';
 require_once __DIR__ . '/includes/seo-helper.php';
+require_once __DIR__ . '/includes/blog-helper.php';
 requireLogin();
 
 $db = getDB();
@@ -115,7 +116,7 @@ $posts = $stmt->fetchAll();
                                 <th>Author</th>
                                 <th>Status</th>
                                 <th>SEO</th>
-                                <th>Views</th>
+                                <th>Views <span class="live-badge" title="Updates every 15 seconds">Live</span></th>
                                 <th>Published</th>
                                 <th>Actions</th>
                             </tr>
@@ -163,7 +164,11 @@ $posts = $stmt->fetchAll();
                                                 <span style="font-size: 0.75rem; background: <?php echo htmlspecialchars($gradeColor); ?>20; padding: 0.15rem 0.35rem; border-radius: 4px;"><?php echo htmlspecialchars($grade); ?></span>
                                             </span>
                                         </td>
-                                        <td><?php echo number_format($post['views']); ?></td>
+                                        <td>
+                                            <span class="post-views" data-post-id="<?php echo (int) $post['id']; ?>" data-views="<?php echo (int) $post['views']; ?>">
+                                                <?php echo number_format($post['views']); ?>
+                                            </span>
+                                        </td>
                                         <td>
                                             <?php if ($post['published_at']): ?>
                                                 <?php echo date('M d, Y', strtotime($post['published_at'])); ?>
@@ -174,13 +179,14 @@ $posts = $stmt->fetchAll();
                                         <td>
                                             <div class="action-buttons">
                                                 <?php if ($post['status'] === 'published'): ?>
-                                                    <a href="/blogs/<?php echo htmlspecialchars($post['slug']); ?>" target="_blank" class="btn-icon" title="View on Frontend" style="background: #10b981; color: white; border-color: #10b981;">
+                                                    <a href="<?php echo htmlspecialchars(getBlogPostUrl($post['slug'])); ?>" target="_blank" class="btn-icon" title="View on Frontend" style="background: #10b981; color: white; border-color: #10b981;">
                                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                                             <circle cx="12" cy="12" r="3"></circle>
                                                         </svg>
                                                     </a>
                                                 <?php endif; ?>
+                                                <?php $sharePost = $post; include __DIR__ . '/includes/share-buttons.php'; ?>
                                                 <a href="post-edit.php?id=<?php echo $post['id']; ?>" class="btn-icon" title="Edit">
                                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -230,5 +236,6 @@ $posts = $stmt->fetchAll();
     </div>
     
     <script src="assets/js/admin.js"></script>
+    <script src="assets/js/post-analytics.js"></script>
 </body>
 </html>

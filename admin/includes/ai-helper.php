@@ -612,6 +612,18 @@ IMPORTANT:
                     // Calculate SEO score
                     $seoScore = calculateSEOScore($articleData);
                     $articleData['seo_score'] = $seoScore;
+
+                    // Generate topic-specific featured banner with full title
+                    $bannerUrl = generateAndUploadBanner(
+                        $articleData['title'],
+                        $articleData['slug'],
+                        $topic,
+                        trim($keywords . ', ' . ($articleData['seo_focus_keyword'] ?? ''))
+                    );
+                    if ($bannerUrl) {
+                        $articleData['featured_image'] = $bannerUrl;
+                        $articleData['og_image'] = $bannerUrl;
+                    }
                     
                     // Enhance content with FAQ section if not already in content
                     if (!empty($articleData['faqs']) && stripos($articleData['content'], 'faq') === false) {
@@ -770,57 +782,252 @@ function injectInternalLinksToContent($content, $keywords) {
 }
 
 /**
- * Generate a blog banner image from title using DALL·E and upload to server.
+ * Infer visual theme hints from title/topic for banner backgrounds.
+ */
+function inferBannerVisualTheme($title, $topic = '', $keywords = '') {
+    $text = strtolower(trim($title . ' ' . $topic . ' ' . $keywords));
+
+    $themes = [
+        'food delivery|restaurant|zomato|swiggy|food ordering' => 'restaurant kitchens, delivery bags, food icons, mobile food ordering UI, maps with delivery routes',
+        'grocery|bigbasket|instamart|supermarket' => 'grocery aisles, fresh produce, shopping baskets, grocery app screens',
+        'taxi|ride|uber|ola|cab booking' => 'city maps, cars, ride-hailing app UI, location pins, urban streets',
+        'healthcare|medical|doctor|hospital|telemedicine' => 'healthcare apps, medical icons, stethoscope, digital health dashboards, clinic scenes',
+        'ecommerce|e-commerce|online store|shopify' => 'online shopping carts, product grids, payment checkout, retail storefronts',
+        'flutter|react native|cross-platform' => 'multi-device mobile screens, code editor, app frameworks logos stylized, phones and tablets',
+        'ios|iphone|swift|apple' => 'iPhone devices, iOS app interfaces, Apple-style clean UI mockups',
+        'android|kotlin' => 'Android phones, Material Design UI, Google Play style app screens',
+        'blockchain|crypto|web3|nft' => 'blockchain nodes, digital wallets, crypto charts, decentralized network graphics',
+        'ai|artificial intelligence|machine learning|chatgpt' => 'neural networks, AI brain visuals, chatbot interfaces, data flows, futuristic tech',
+        'seo|digital marketing|search engine' => 'analytics dashboards, search rankings charts, marketing funnels, keyword graphs',
+        'education|e-learning|lms|course' => 'online learning platforms, students with laptops, course modules, video lessons',
+        'real estate|property|proptech' => 'buildings, property listings, map pins on homes, real estate app UI',
+        'fintech|payment|banking|wallet' => 'mobile banking apps, secure payments, credit cards, transaction flows',
+        'saas|software|web development|website' => 'web dashboards, cloud infrastructure, browser windows, software architecture diagrams',
+        'hyderabad|india|startup' => 'modern Indian tech city skyline subtly in background, startup office energy',
+    ];
+
+    foreach ($themes as $pattern => $visuals) {
+        $parts = explode('|', $pattern);
+        foreach ($parts as $part) {
+            if (strpos($text, $part) !== false) {
+                return $visuals;
+            }
+        }
+    }
+
+    return 'modern technology workspace, smartphones, laptops, app development wireframes, clean professional software company atmosphere';
+}
+
+/**
+ * Build a topic-specific DALL-E background prompt (no text — title is overlaid in PHP).
+ */
+function buildBannerBackgroundPrompt($title, $topic = '', $keywords = '') {
+    $fullTitle = trim($title);
+    $topic = trim($topic);
+    $keywords = trim($keywords);
+    $themeHints = inferBannerVisualTheme($fullTitle, $topic, $keywords);
+
+    $prompt = "Create a DALL-E 3 image prompt for a wide horizontal blog featured banner background (1792x1024).
+
+Article title (for context only — DO NOT render any text in the image): \"{$fullTitle}\"
+Topic: \"{$topic}\"
+Keywords: \"{$keywords}\"
+Visual theme to use: {$themeHints}
+
+Requirements for the DALL-E prompt you write:
+- Background must clearly relate to THIS specific article topic, not a generic delivery app
+- Use rich, relevant illustrations/icons/scenes in the background matching the topic
+- Reserve the TOP 30% as a soft dark or blurred gradient overlay area (for title text added later) — no text, logos, or letters anywhere in the image
+- Modern professional tech-blog illustration style, vibrant colors, depth, semi-flat design
+- Include topic-specific elements (devices, UI mockups, industry icons) spread across left, center, and right
+- TechWebLabs-friendly palette accents (green #10b981, blue #667eea) where appropriate but adapted to topic
+- NO people faces, NO readable text, NO watermarks, NO misspelled words
+
+Return ONLY the DALL-E prompt text. No quotes, no JSON, no explanation.";
+
+    try {
+        $response = callOpenAI(
+            $prompt,
+            600,
+            'You are an expert at writing DALL-E 3 image prompts for professional blog banners. Return ONLY the image prompt text — no JSON, no markdown, no explanation.'
+        );
+        if ($response && isset($response['choices'][0]['message']['content'])) {
+            $generated = trim($response['choices'][0]['message']['content']);
+            if (strlen($generated) > 80) {
+                return $generated;
+            }
+        }
+    } catch (Exception $e) {
+        error_log('Banner prompt generation error: ' . $e->getMessage());
+    }
+
+    return "Wide horizontal professional blog banner illustration. Topic: {$topic}. Visual elements: {$themeHints}. "
+        . "Rich topic-related background imagery spread across the scene. Modern semi-flat tech illustration, vibrant and clean. "
+        . "Top 30% soft dark gradient overlay area for text. NO text, NO letters, NO logos anywhere in the image.";
+}
+
+/**
+ * Find a TrueType font for banner title overlay.
+ */
+function findBannerFontPath() {
+    $candidates = [
+        '/System/Library/Fonts/Supplemental/Arial Bold.ttf',
+        '/System/Library/Fonts/Supplemental/Arial.ttf',
+        '/Library/Fonts/Arial Bold.ttf',
+        '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+        '/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf',
+        'C:\\Windows\\Fonts\\arialbd.ttf',
+    ];
+
+    foreach ($candidates as $path) {
+        if (file_exists($path)) {
+            return $path;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Wrap title text to fit banner width.
+ */
+function wrapBannerTitleLines($title, $fontPath, $fontSize, $maxWidth) {
+    $words = preg_split('/\s+/', trim($title));
+    $lines = [];
+    $current = '';
+
+    foreach ($words as $word) {
+        if ($word === '') {
+            continue;
+        }
+        $test = $current === '' ? $word : $current . ' ' . $word;
+        $box = imagettfbbox($fontSize, 0, $fontPath, $test);
+        $width = abs($box[2] - $box[0]);
+
+        if ($width > $maxWidth && $current !== '') {
+            $lines[] = $current;
+            $current = $word;
+        } else {
+            $current = $test;
+        }
+    }
+
+    if ($current !== '') {
+        $lines[] = $current;
+    }
+
+    return $lines ?: [trim($title)];
+}
+
+/**
+ * Overlay the full article title onto the banner image.
+ */
+function overlayBannerTitle($filepath, $title) {
+    if (!function_exists('imagecreatefrompng') || !file_exists($filepath)) {
+        return false;
+    }
+
+    $title = trim($title);
+    if ($title === '') {
+        return false;
+    }
+
+    $image = @imagecreatefrompng($filepath);
+    if (!$image) {
+        return false;
+    }
+
+    imagesavealpha($image, true);
+    $width = imagesx($image);
+    $height = imagesy($image);
+    $fontPath = findBannerFontPath();
+
+    $overlayHeight = (int) max(140, $height * 0.32);
+    $overlay = imagecreatetruecolor($width, $overlayHeight);
+    imagealphablending($overlay, false);
+    imagesavealpha($overlay, true);
+    $transparent = imagecolorallocatealpha($overlay, 15, 23, 42, 127);
+    imagefilledrectangle($overlay, 0, 0, $width, $overlayHeight, $transparent);
+    imagecopymerge($image, $overlay, 0, 0, 0, 0, $width, $overlayHeight, 70);
+    imagedestroy($overlay);
+
+    $paddingX = (int) ($width * 0.06);
+    $maxTextWidth = $width - ($paddingX * 2);
+    $white = imagecolorallocate($image, 255, 255, 255);
+    $accent = imagecolorallocate($image, 16, 185, 129);
+
+    if ($fontPath) {
+        $fontSize = 42;
+        $lines = wrapBannerTitleLines($title, $fontPath, $fontSize, $maxTextWidth);
+
+        while (count($lines) > 3 && $fontSize > 24) {
+            $fontSize -= 4;
+            $lines = wrapBannerTitleLines($title, $fontPath, $fontSize, $maxTextWidth);
+        }
+
+        $lineHeight = (int) ($fontSize * 1.35);
+        $totalTextHeight = count($lines) * $lineHeight;
+        $startY = (int) (($overlayHeight - $totalTextHeight) / 2 + $fontSize);
+
+        foreach ($lines as $index => $line) {
+            $color = ($index === count($lines) - 1) ? $accent : $white;
+            imagettftext($image, $fontSize, 0, $paddingX, $startY + ($index * $lineHeight), $color, $fontPath, $line);
+        }
+    } else {
+        $fallbackTitle = strlen($title) > 90 ? substr($title, 0, 87) . '...' : $title;
+        imagestring($image, 5, $paddingX, 40, $fallbackTitle, $white);
+    }
+
+    imagepng($image, $filepath);
+    imagedestroy($image);
+
+    return true;
+}
+
+/**
+ * Generate a blog banner from full title + topic using DALL·E and upload to server.
  * Returns full URL of saved banner or null on failure.
  */
-function generateAndUploadBanner($title, $slug) {
+function generateAndUploadBanner($title, $slug, $topic = '', $keywords = '') {
     if (!isAIConfigured()) {
         return null;
     }
-    $apiKey = getAIAPIKey();
-    $slugSafe = preg_replace('/[^a-z0-9\-]/', '-', strtolower($slug));
-    $slugSafe = substr($slugSafe, 0, 80);
-    $filename = $slugSafe . '-' . time() . '.png';
 
+    $apiKey = getAIAPIKey();
+    $fullTitle = trim($title);
+    $slugSafe = preg_replace('/[^a-z0-9\-]/', '-', strtolower($slug));
+    $slugSafe = trim(substr($slugSafe, 0, 100), '-');
+    if ($slugSafe === '') {
+        $slugSafe = 'blog-' . time();
+    }
+
+    $filename = $slugSafe . '.png';
     $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : (defined('ROOT_DIR') ? rtrim(ROOT_DIR, '/') : realpath(__DIR__ . '/../..'));
     $saveDir = rtrim($docRoot, '/') . '/assets/blog-banners/';
     if (!is_dir($saveDir)) {
         if (!@mkdir($saveDir, 0755, true)) {
-            error_log("Banner upload: could not create directory: " . $saveDir);
+            error_log('Banner upload: could not create directory: ' . $saveDir);
             return null;
         }
     }
 
-    $titleShort = trim(substr($title, 0, 80));
-    $prompt = "Create a vibrant, friendly ILLUSTRATIVE BANNER for a blog article. Clean cartoonish illustration style, approachable and bright. Wide horizontal layout.
+    $filepath = $saveDir . $filename;
+    if (file_exists($filepath)) {
+        $filename = $slugSafe . '-' . time() . '.png';
+        $filepath = $saveDir . $filename;
+    }
 
-COLORS AND BACKGROUND:
-- Soft light blue sky at top with faint clouds; lower area transitions to light green hazy landscape with stylized buildings, trees, and greenery. Small sparkle or star-like details in the upper area. Sense of depth and a clean urban or service environment.
+    $backgroundPrompt = buildBannerBackgroundPrompt($fullTitle, $topic, $keywords);
 
-TITLE AND CTA:
-- TOP CENTER: Prominent headline. The exact article title must be: \"" . addslashes($titleShort) . "\". Use dark text for most of the title and BRIGHT GREEN for the key phrase or last important word (e.g. brand name or \"Complete Guide\").
-- BOTTOM: A rounded rectangular button with soft yellow background and dark text, e.g. \"Read Step-by-Step Tutorial\" or \"Read Guide\" or \"Learn More\".
-
-LEFT SIDE:
-- A modern smartphone (teal-green or green bezel) showing an app interface relevant to the article topic (e.g. grocery/delivery: categories like VEGETABLES, FRUITS, ADD buttons; healthcare: health app; generic: app icons). In front of the phone: a paper bag or container with items that match the topic (e.g. fresh produce, groceries, or relevant products). Next to it: golden coins, green banknotes, and a small credit card to suggest payments or value.
-
-CENTER:
-- A bright yellow delivery scooter or vehicle (or topic-relevant action element) with a green delivery box or cargo showing a shopping cart or app logo. A location pin or speech bubble with text like \"Delivery 10-20 min\" or similar. A dashed golden or yellow line (delivery route) connecting map pins from left toward the right. In the background: stylized city or town with light green buildings, striped awnings, lush greenery.
-
-RIGHT SIDE:
-- A smiling delivery person or professional (e.g. in bright green polo and cap, or topic-appropriate uniform) holding a smartphone in one hand and a brown paper bag or package in the other, with a small logo on the bag. Friendly, approachable pose.
-
-STYLE RULES:
-- Illustrated, flat to semi-flat. NOT photorealistic. Friendly, bright, slightly cartoonish. Color palette: greens, yellows, earthy tones, light blue, brown for bags. All text in English and readable. Reflect the article topic in the visuals (e.g. grocery/delivery: app with categories, grocery bags, scooter; healthcare: health app, medical items; app development: app UI, developer). Include the exact article title at the top and the yellow CTA button at the bottom.";
     $url = 'https://api.openai.com/v1/images/generations';
     $data = [
         'model' => 'dall-e-3',
-        'prompt' => $prompt,
+        'prompt' => $backgroundPrompt,
         'n' => 1,
         'size' => '1792x1024',
         'quality' => 'hd',
         'response_format' => 'url',
-        'style' => 'natural'
+        'style' => 'vivid',
     ];
 
     $ch = curl_init($url);
@@ -829,7 +1036,7 @@ STYLE RULES:
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Content-Type: application/json',
-        'Authorization: Bearer ' . $apiKey
+        'Authorization: Bearer ' . $apiKey,
     ]);
     curl_setopt($ch, CURLOPT_TIMEOUT, 120);
     $response = curl_exec($ch);
@@ -838,7 +1045,7 @@ STYLE RULES:
 
     if ($httpCode !== 200) {
         $err = json_decode($response, true);
-        error_log("DALL·E API error: " . ($err['error']['message'] ?? $response));
+        error_log('DALL·E API error: ' . ($err['error']['message'] ?? $response));
         return null;
     }
 
@@ -850,17 +1057,24 @@ STYLE RULES:
 
     $imageData = @file_get_contents($imageUrl);
     if ($imageData === false) {
-        error_log("Banner: failed to download image from OpenAI");
+        error_log('Banner: failed to download image from OpenAI');
         return null;
     }
 
-    $filepath = $saveDir . $filename;
     if (file_put_contents($filepath, $imageData) === false) {
-        error_log("Banner: failed to save file: " . $filepath);
+        error_log('Banner: failed to save file: ' . $filepath);
         return null;
     }
 
-    $baseUrl = defined('SITE_BASE_URL') ? SITE_BASE_URL : 'https://techweblabs.com';
+    overlayBannerTitle($filepath, $fullTitle);
+
+    if (function_exists('getSiteBaseUrl')) {
+        $baseUrl = getSiteBaseUrl();
+    } else {
+        require_once __DIR__ . '/upload-helper.php';
+        $baseUrl = getSiteBaseUrl();
+    }
+
     return rtrim($baseUrl, '/') . '/assets/blog-banners/' . $filename;
 }
 
@@ -937,7 +1151,12 @@ Return ONLY this JSON (no markdown, no explanation):
         $articleData['content'] = injectInternalLinksToContent($articleData['content'], $keywordsStr . ',' . $articleData['seo_focus_keyword']);
 
         $slug = $articleData['slug'] ?? '';
-        $bannerUrl = generateAndUploadBanner($articleData['title'], $slug ?: 'blog-' . time());
+        $bannerUrl = generateAndUploadBanner(
+            $articleData['title'],
+            $slug ?: 'blog-' . time(),
+            $articleData['title'],
+            $keywordsStr . ',' . ($articleData['seo_focus_keyword'] ?? '')
+        );
         if ($bannerUrl) {
             $articleData['featured_image'] = $bannerUrl;
             $articleData['og_image'] = $bannerUrl;
@@ -962,7 +1181,7 @@ Return ONLY this JSON (no markdown, no explanation):
 /**
  * Call OpenAI API
  */
-function callOpenAI($prompt, $maxTokens = 2000) {
+function callOpenAI($prompt, $maxTokens = 2000, $systemMessage = null) {
     $apiKey = getAIAPIKey();
     if (!$apiKey) {
         throw new Exception('OpenAI API key not configured');
@@ -975,7 +1194,7 @@ function callOpenAI($prompt, $maxTokens = 2000) {
         'messages' => [
             [
                 'role' => 'system',
-                'content' => 'You are an expert SEO content writer specializing in technology and software development topics. Always return valid JSON format.'
+                'content' => $systemMessage ?? 'You are an expert SEO content writer specializing in technology and software development topics. Always return valid JSON format.'
             ],
             [
                 'role' => 'user',

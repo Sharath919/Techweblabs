@@ -5,11 +5,15 @@
 define('ADMIN_PANEL', true);
 require_once __DIR__ . '/config/auth.php';
 require_once __DIR__ . '/config/db_config.php';
+require_once __DIR__ . '/includes/upload-helper.php';
+require_once __DIR__ . '/includes/blog-helper.php';
 requireLogin();
 
 $db = getDB();
 $error = '';
 $success = isset($_GET['success']) ? (stripos($_GET['success'], 'SEO') !== false ? htmlspecialchars($_GET['success']) : 'Post ' . htmlspecialchars($_GET['success']) . ' successfully!') : '';
+$featuredImageValue = '';
+$ogImageValue = '';
 
 // Get post ID
 $postId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -93,7 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $metaDescription = sanitizeInput($_POST['meta_description'] ?? '');
     $metaKeywords = sanitizeInput($_POST['meta_keywords'] ?? '');
     $focusKeyword = sanitizeInput($_POST['focus_keyword'] ?? '');
-    $featuredImage = sanitizeInput($_POST['featured_image'] ?? '');
     $ogImage = sanitizeInput($_POST['og_image'] ?? '');
     $status = sanitizeInput($_POST['status'] ?? 'draft');
     $schemaType = sanitizeInput($_POST['schema_type'] ?? 'Article');
@@ -102,9 +105,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($slug) && !empty($title)) {
         $slug = generateSlug($title);
     }
+
+    $featuredResult = resolveFeaturedImage(
+        $_POST['featured_image'] ?? '',
+        $_FILES['featured_image_upload'] ?? null,
+        $slug
+    );
+    $featuredImage = $featuredResult['url'];
     
     // Validate
-    if (empty($title) || empty($content)) {
+    if ($featuredResult['error']) {
+        $error = $featuredResult['error'];
+    } elseif (empty($title) || empty($content)) {
         $error = 'Title and content are required.';
     } elseif (empty($slug)) {
         $error = 'Slug is required.';
@@ -207,7 +219,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     }
+
+    if (!isset($_POST['action']) || $_POST['action'] !== 'fix_seo') {
+        $featuredImageValue = !empty($featuredImage) ? $featuredImage : trim($_POST['featured_image'] ?? ($post['featured_image'] ?? ''));
+        $ogImageValue = $_POST['og_image'] ?? ($post['og_image'] ?? '');
+    }
 }
+
+$featuredImageValue = $featuredImageValue ?: ($post['featured_image'] ?? '');
+$ogImageValue = $ogImageValue ?: ($post['og_image'] ?? '');
 
 // Get categories for dropdown
 $categories = $db->query("SELECT * FROM blog_categories ORDER BY name")->fetchAll();
@@ -251,8 +271,50 @@ $categories = $db->query("SELECT * FROM blog_categories ORDER BY name")->fetchAl
                     <?php echo htmlspecialchars($success); ?>
                 </div>
             <?php endif; ?>
+
+            <div class="content-section post-insights">
+                <div class="post-insights-grid">
+                    <div class="post-insight-card">
+                        <span class="post-insight-label">Views <span class="live-badge" title="Updates every 15 seconds">Live</span></span>
+                        <strong class="post-views post-insight-value" data-post-id="<?php echo (int) $post['id']; ?>" data-views="<?php echo (int) $post['views']; ?>">
+                            <?php echo number_format($post['views']); ?>
+                        </strong>
+                    </div>
+                    <div class="post-insight-card">
+                        <span class="post-insight-label">Public URL</span>
+                        <a href="<?php echo htmlspecialchars(getBlogPostUrl($post['slug'])); ?>" target="_blank" class="post-insight-link">
+                            <?php echo htmlspecialchars(getBlogPostUrl($post['slug'])); ?>
+                        </a>
+                    </div>
+                    <div class="post-insight-card post-insight-share">
+                        <span class="post-insight-label">Share on social media</span>
+                        <div class="share-inline">
+                            <?php
+                            $sharePost = $post;
+                            $shareLinks = getPostShareLinks($post);
+                            foreach ($shareLinks as $link):
+                            ?>
+                                <a href="<?php echo htmlspecialchars($link['url']); ?>"
+                                   class="share-inline-link <?php echo htmlspecialchars($link['class']); ?>"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    <?php echo htmlspecialchars($link['label']); ?>
+                                </a>
+                            <?php endforeach; ?>
+                            <button type="button"
+                                    class="share-inline-link share-copy"
+                                    data-copy-url="<?php echo htmlspecialchars(getBlogPostUrl($post['slug'])); ?>">
+                                Copy Link
+                            </button>
+                        </div>
+                        <?php if ($post['status'] !== 'published'): ?>
+                            <p class="share-menu-note">Article is a draft — share link will work after publishing.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
             
-            <form method="POST" action="" class="content-section">
+            <form method="POST" action="" class="content-section" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="form-group" style="flex: 2;">
                         <label for="post-title">Post Title *</label>
@@ -322,18 +384,7 @@ $categories = $db->query("SELECT * FROM blog_categories ORDER BY name")->fetchAl
                     <div class="help-text">Primary keyword for this post</div>
                 </div>
                 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="featured-image">Featured Image URL</label>
-                        <input type="url" id="featured-image" name="featured_image" value="<?php echo htmlspecialchars($_POST['featured_image'] ?? $post['featured_image']); ?>">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="og-image">Open Graph Image URL</label>
-                        <input type="url" id="og-image" name="og_image" value="<?php echo htmlspecialchars($_POST['og_image'] ?? $post['og_image']); ?>">
-                        <div class="help-text">Leave empty to use featured image</div>
-                    </div>
-                </div>
+                <?php include __DIR__ . '/includes/featured-image-field.php'; ?>
                 
                 <div class="form-group">
                     <label for="schema-type">Schema Type</label>
@@ -376,5 +427,6 @@ $categories = $db->query("SELECT * FROM blog_categories ORDER BY name")->fetchAl
     </div>
     
     <script src="assets/js/admin.js"></script>
+    <script src="assets/js/post-analytics.js"></script>
 </body>
 </html>

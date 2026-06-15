@@ -357,6 +357,7 @@ body {
 .action-buttons {
     display: flex;
     gap: 0.5rem;
+    position: relative;
 }
 
 .btn-icon {
@@ -401,6 +402,215 @@ body {
 
 .mt-2 {
     margin-top: 1rem;
+}
+
+/* Featured image upload */
+.featured-image-group {
+    margin-bottom: 1.5rem;
+}
+
+.featured-image-preview {
+    margin: 0.75rem 0 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--light);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.featured-image-preview img {
+    display: block;
+    width: 100%;
+    max-height: 240px;
+    object-fit: cover;
+}
+
+.featured-image-preview--empty {
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.featured-image-upload-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.featured-image-upload-btn {
+    cursor: pointer;
+    margin: 0;
+}
+
+#featured-image-upload {
+    display: none;
+}
+
+.featured-image-or {
+    margin: 0.75rem 0;
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Live views + social share */
+.live-badge {
+    display: inline-block;
+    margin-left: 0.35rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    background: #ecfdf5;
+    color: #059669;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.post-views.views-updated {
+    color: var(--success-color);
+    transition: color 0.3s ease;
+}
+
+#total-views-stat.views-updated {
+    color: var(--success-color);
+}
+
+.share-wrap {
+    position: relative;
+    display: inline-flex;
+}
+
+.share-trigger {
+    background: #eef2ff;
+    border-color: #c7d2fe;
+    color: #4338ca;
+}
+
+.share-menu {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    z-index: 20;
+    min-width: 180px;
+    padding: 0.75rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+}
+
+.share-menu-header {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.share-menu-note {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+.share-menu-links,
+.share-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.share-inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.share-link,
+.share-inline-link {
+    display: block;
+    width: 100%;
+    padding: 0.45rem 0.65rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--light);
+    color: var(--text);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.share-inline-link {
+    width: auto;
+}
+
+.share-link:hover,
+.share-inline-link:hover {
+    background: #eef2ff;
+    color: #4338ca;
+}
+
+.share-facebook { border-left: 3px solid #1877f2; }
+.share-twitter { border-left: 3px solid #1d9bf0; }
+.share-linkedin { border-left: 3px solid #0a66c2; }
+.share-whatsapp { border-left: 3px solid #25d366; }
+.share-telegram { border-left: 3px solid #229ed9; }
+.share-email { border-left: 3px solid #64748b; }
+.share-copy { border-left: 3px solid var(--primary-color); }
+
+.post-insights {
+    margin-bottom: 1.5rem;
+}
+
+.post-insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.post-insight-card {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--light);
+}
+
+.post-insight-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.post-insight-value {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    color: var(--dark);
+}
+
+.post-insight-link {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--info-color);
+    word-break: break-all;
+    text-decoration: none;
+}
+
+.post-insight-link:hover {
+    text-decoration: underline;
+}
+
+.post-insight-share {
+    grid-column: 1 / -1;
 }
 
 /* Responsive */
