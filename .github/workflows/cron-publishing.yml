@@ -1,0 +1,17 @@
+name: Cron Publishing
+
+on:
+  schedule:
+    # Every 3 hours — batch of 3 ≈ up to 8-12 posts/day on Hobby
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger publishing cron
+        run: |
+          curl -sf -X POST "${{ secrets.SITE_URL }}/api/cron/publishing" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json"

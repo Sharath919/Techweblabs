@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# Generated
+public/static/
+public/css/
+public/js/
+public/images/
+public/fonts/
+public/favicons/
+public/homepage/
+public/components/
+scripts/generated-static-rewrites.json
+
+# Build
+tsconfig.tsbuildinfo
+
+# OS
+.DS_Store
+
+# Keep legacy PHP — do not ignore admin/, pages/, etc.
