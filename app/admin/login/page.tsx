@@ -27,35 +27,42 @@ function AdminLoginForm() {
   }
 
   return (
-    <div className="admin-shell d-flex align-items-center justify-content-center">
-      <div className="admin-card" style={{ width: 400, maxWidth: '90vw' }}>
-        <h1 className="h4 mb-4">TechWebLabs Admin</h1>
+    <div className="admin-login-page">
+      <div className="admin-login-card">
+        <h1>TechWebLabs Admin</h1>
+        <p>Sign in to manage articles, schedule, and leads.</p>
         {unauthorized && (
-          <p className="text-danger small">Your account is not authorized for admin access.</p>
+          <p className="admin-message admin-message--error">Your account is not authorized for admin access.</p>
         )}
-        <form onSubmit={handleLogin}>
-          <div className="mb-3">
-            <label className="form-label">Email</label>
+        <form onSubmit={handleLogin} className="admin-stack">
+          <div>
+            <label className="admin-label" htmlFor="email">
+              Email
+            </label>
             <input
+              id="email"
               type="email"
-              className="form-control"
+              className="admin-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
-          <div className="mb-3">
-            <label className="form-label">Password</label>
+          <div>
+            <label className="admin-label" htmlFor="password">
+              Password
+            </label>
             <input
+              id="password"
               type="password"
-              className="form-control"
+              className="admin-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-          {error && <p className="text-danger small">{error}</p>}
-          <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+          {error && <p className="admin-message admin-message--error">{error}</p>}
+          <button type="submit" className="admin-btn admin-btn--primary admin-btn--block" disabled={loading}>
             {loading ? 'Signing in…' : 'Sign In'}
           </button>
         </form>
@@ -66,7 +73,7 @@ function AdminLoginForm() {
 
 export default function AdminLoginPage() {
   return (
-    <Suspense fallback={<div className="admin-shell d-flex align-items-center justify-content-center">Loading…</div>}>
+    <Suspense fallback={<div className="admin-loading">Loading…</div>}>
       <AdminLoginForm />
     </Suspense>
   )

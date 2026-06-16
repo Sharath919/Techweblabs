@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { createBrowserSupabase } from '@/lib/supabase'
 import { TEMPLATE_TYPES } from '@/config/articleMachinePrompts'
+import AdminPanel from '@/components/admin/AdminPanel'
+import StatusBadge from '@/components/admin/StatusBadge'
 
 type ScheduleItem = {
   id: string
@@ -79,71 +81,111 @@ export default function AdminSchedulePage() {
   }
 
   return (
-    <div>
-      <h1 className="h3 mb-4">Publishing Schedule</h1>
-      <div className="admin-card mb-4">
-        <h2 className="h5">Add Topic</h2>
-        <form onSubmit={addToSchedule} className="row g-3">
-          <div className="col-md-5">
+    <div className="admin-stack">
+      <AdminPanel
+        title="Add Topic"
+        description="Queue articles for automated publishing. Cron runs 7× daily, processing up to 3 pending items per run."
+      >
+        <form onSubmit={addToSchedule} className="admin-form-grid admin-form-grid--schedule">
+          <div>
+            <label className="admin-label" htmlFor="topic">
+              Article topic
+            </label>
             <input
-              className="form-control"
-              placeholder="Article topic (e.g. Flutter vs React Native 2025)"
+              id="topic"
+              className="admin-input"
+              placeholder="Flutter vs React Native 2026"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               required
             />
           </div>
-          <div className="col-md-3">
-            <select className="form-select" value={templateType} onChange={(e) => setTemplateType(e.target.value)}>
+          <div>
+            <label className="admin-label" htmlFor="template">
+              Template
+            </label>
+            <select
+              id="template"
+              className="admin-select"
+              value={templateType}
+              onChange={(e) => setTemplateType(e.target.value)}
+            >
               {Object.entries(TEMPLATE_TYPES).map(([k, v]) => (
-                <option key={k} value={k}>{v}</option>
+                <option key={k} value={k}>
+                  {v}
+                </option>
               ))}
             </select>
           </div>
-          <div className="col-md-2">
-            <input type="date" className="form-control" value={scheduledDate} onChange={(e) => setScheduledDate(e.target.value)} />
+          <div>
+            <label className="admin-label" htmlFor="date">
+              Scheduled date
+            </label>
+            <input
+              id="date"
+              type="date"
+              className="admin-input"
+              value={scheduledDate}
+              onChange={(e) => setScheduledDate(e.target.value)}
+            />
           </div>
-          <div className="col-md-2">
-            <button type="submit" className="btn btn-primary w-100" disabled={loading}>Add</button>
-          </div>
+          <button type="submit" className="admin-btn admin-btn--primary" disabled={loading}>
+            Add
+          </button>
         </form>
-        {message && <p className="mt-2 small text-muted">{message}</p>}
-      </div>
-      <div className="admin-card">
-        <table className="table table-sm">
-          <thead>
-            <tr>
-              <th>Topic</th>
-              <th>Template</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => (
-              <tr key={item.id}>
-                <td>{item.card_name}</td>
-                <td>{item.template_type}</td>
-                <td>{item.scheduled_date}</td>
-                <td>
-                  <span className={`badge ${item.status === 'done' ? 'bg-success' : item.status === 'failed' ? 'bg-danger' : 'bg-secondary'}`}>
-                    {item.status}
-                  </span>
-                  {item.error_text && <small className="d-block text-danger">{item.error_text}</small>}
-                </td>
-                <td>
-                  {item.status === 'pending' && (
-                    <button type="button" className="btn btn-sm btn-outline-primary" onClick={() => generateNow(item)}>
-                      Generate Now
-                    </button>
-                  )}
-                </td>
+        {message && <p className="admin-message">{message}</p>}
+      </AdminPanel>
+
+      <AdminPanel title="Schedule Queue">
+        <div className="admin-table-wrap">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Topic</th>
+                <th>Template</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.card_name}</td>
+                  <td>{item.template_type}</td>
+                  <td>{item.scheduled_date}</td>
+                  <td>
+                    <StatusBadge status={item.status} />
+                    {item.error_text && (
+                      <small className="admin-message admin-message--error" style={{ display: 'block', marginTop: 4 }}>
+                        {item.error_text}
+                      </small>
+                    )}
+                  </td>
+                  <td>
+                    {item.status === 'pending' && (
+                      <button
+                        type="button"
+                        className="admin-btn admin-btn--ghost admin-btn--sm"
+                        onClick={() => generateNow(item)}
+                      >
+                        Generate Now
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+              {items.length === 0 && (
+                <tr>
+                  <td colSpan={5} style={{ color: 'var(--admin-muted)' }}>
+                    No items in schedule
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </AdminPanel>
     </div>
   )
 }

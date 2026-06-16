@@ -1,3 +1,5 @@
+import AdminPanel from '@/components/admin/AdminPanel'
+import StatusBadge from '@/components/admin/StatusBadge'
 import { createServerSupabase } from '@/lib/supabase'
 
 export const dynamic = 'force-dynamic'
@@ -24,10 +26,12 @@ export default async function AdminLeadsPage() {
   }
 
   return (
-    <div>
-      <h1 className="h3 mb-4">Lead Captures</h1>
-      <div className="admin-card">
-        <table className="table table-sm">
+    <AdminPanel
+      title="Lead Captures"
+      description="Leads from the homepage persona widget and contact flows."
+    >
+      <div className="admin-table-wrap">
+        <table className="admin-table">
           <thead>
             <tr>
               <th>Name</th>
@@ -44,17 +48,23 @@ export default async function AdminLeadsPage() {
                 <td>{lead.name || '—'}</td>
                 <td>{lead.email || '—'}</td>
                 <td>{lead.phone || '—'}</td>
-                <td>{lead.requirement?.slice(0, 60) || '—'}</td>
-                <td><span className="badge bg-secondary">{lead.status}</span></td>
+                <td>{lead.requirement?.slice(0, 80) || '—'}</td>
+                <td>
+                  <StatusBadge status={lead.status} />
+                </td>
                 <td>{new Date(lead.created_at).toLocaleDateString()}</td>
               </tr>
             ))}
             {leads.length === 0 && (
-              <tr><td colSpan={6} className="text-muted">No leads yet</td></tr>
+              <tr>
+                <td colSpan={6} style={{ color: 'var(--admin-muted)' }}>
+                  No leads yet
+                </td>
+              </tr>
             )}
           </tbody>
         </table>
       </div>
-    </div>
+    </AdminPanel>
   )
 }

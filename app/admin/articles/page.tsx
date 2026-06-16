@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import AdminPanel from '@/components/admin/AdminPanel'
+import StatusBadge from '@/components/admin/StatusBadge'
 import { createServerSupabase } from '@/lib/supabase'
 
 export const dynamic = 'force-dynamic'
@@ -17,13 +19,17 @@ export default async function AdminArticlesPage() {
   }
 
   return (
-    <div>
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1 className="h3 mb-0">Articles</h1>
-        <Link href="/admin/schedule" className="btn btn-primary btn-sm">Schedule New</Link>
-      </div>
-      <div className="admin-card">
-        <table className="table table-sm">
+    <AdminPanel
+      title="All Articles"
+      description="Blog posts stored in Supabase. Published posts appear on /blogs."
+      actions={
+        <Link href="/admin/schedule" className="admin-btn admin-btn--primary admin-btn--sm">
+          Schedule New
+        </Link>
+      }
+    >
+      <div className="admin-table-wrap">
+        <table className="admin-table">
           <thead>
             <tr>
               <th>Title</th>
@@ -37,22 +43,30 @@ export default async function AdminArticlesPage() {
             {posts.map((post) => (
               <tr key={post.id}>
                 <td>{post.title}</td>
-                <td><span className="badge bg-secondary">{post.status}</span></td>
+                <td>
+                  <StatusBadge status={post.status} />
+                </td>
                 <td>{post.views}</td>
                 <td>{post.published_at ? new Date(post.published_at).toLocaleDateString() : '—'}</td>
                 <td>
                   {post.status === 'published' && (
-                    <a href={`/blogs/${post.slug}`} target="_blank" rel="noopener noreferrer">View</a>
+                    <a href={`/blogs/${post.slug}`} target="_blank" rel="noopener noreferrer">
+                      View
+                    </a>
                   )}
                 </td>
               </tr>
             ))}
             {posts.length === 0 && (
-              <tr><td colSpan={5} className="text-muted">No articles yet</td></tr>
+              <tr>
+                <td colSpan={5} style={{ color: 'var(--admin-muted)' }}>
+                  No articles yet — migrate from MySQL or queue in Schedule.
+                </td>
+              </tr>
             )}
           </tbody>
         </table>
       </div>
-    </div>
+    </AdminPanel>
   )
 }

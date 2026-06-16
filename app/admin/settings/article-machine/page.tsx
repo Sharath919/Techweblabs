@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createBrowserSupabase } from '@/lib/supabase'
 import { getBuiltInArticlePrompt, TEMPLATE_TYPES } from '@/config/articleMachinePrompts'
+import AdminPanel from '@/components/admin/AdminPanel'
 
 export default function ArticleMachineSettingsPage() {
   const [automationEnabled, setAutomationEnabled] = useState(true)
@@ -52,45 +53,54 @@ export default function ArticleMachineSettingsPage() {
   }
 
   return (
-    <div>
-      <h1 className="h3 mb-4">Article Machine Settings</h1>
-      <div className="admin-card mb-4">
-        <div className="form-check form-switch mb-3">
+    <div className="admin-stack">
+      <AdminPanel
+        title="Automation"
+        description="When enabled, Vercel cron jobs process pending schedule items automatically."
+        actions={
+          <button type="button" className="admin-btn admin-btn--primary admin-btn--sm" onClick={save}>
+            Save Settings
+          </button>
+        }
+      >
+        <label className="admin-switch">
           <input
-            className="form-check-input"
             type="checkbox"
             checked={automationEnabled}
             onChange={(e) => setAutomationEnabled(e.target.checked)}
-            id="automation"
           />
-          <label className="form-check-label" htmlFor="automation">Automation enabled (cron will process schedule)</label>
-        </div>
-        <button type="button" className="btn btn-primary" onClick={save}>Save Settings</button>
-        {message && <span className="ms-3 small text-muted">{message}</span>}
-      </div>
+          Automation enabled (cron will process schedule)
+        </label>
+        {message && <p className="admin-message">{message}</p>}
+      </AdminPanel>
+
       {Object.entries(TEMPLATE_TYPES).map(([type, label]) => {
         const key = `article_machine_prompt_${type.replace(/-/g, '_')}`
         return (
-          <div key={type} className="admin-card mb-3">
-            <h2 className="h6">{label} Prompt</h2>
+          <AdminPanel key={type} title={`${label} Prompt`}>
             <textarea
-              className="form-control font-monospace small"
+              className="admin-textarea"
               rows={6}
               value={prompts[key] || ''}
               onChange={(e) => setPrompts({ ...prompts, [key]: e.target.value })}
               placeholder={getBuiltInArticlePrompt(type).slice(0, 200) + '…'}
             />
-          </div>
+          </AdminPanel>
         )
       })}
-      <div className="admin-card mb-3">
-        <h2 className="h6">Persona Welcome Message</h2>
-        <input className="form-control" value={welcomeMessage} onChange={(e) => setWelcomeMessage(e.target.value)} />
-      </div>
-      <div className="admin-card mb-3">
-        <h2 className="h6">Persona System Prompt</h2>
-        <textarea className="form-control font-monospace small" rows={8} value={personaPrompt} onChange={(e) => setPersonaPrompt(e.target.value)} />
-      </div>
+
+      <AdminPanel title="Persona Welcome Message">
+        <input className="admin-input" value={welcomeMessage} onChange={(e) => setWelcomeMessage(e.target.value)} />
+      </AdminPanel>
+
+      <AdminPanel title="Persona System Prompt">
+        <textarea
+          className="admin-textarea"
+          rows={8}
+          value={personaPrompt}
+          onChange={(e) => setPersonaPrompt(e.target.value)}
+        />
+      </AdminPanel>
     </div>
   )
 }

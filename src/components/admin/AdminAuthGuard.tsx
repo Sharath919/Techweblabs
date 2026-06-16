@@ -61,11 +61,7 @@ export function AdminAuthGuard({ children }: { children: React.ReactNode }) {
   }, [router])
 
   if (!ready) {
-    return (
-      <div className="admin-shell d-flex align-items-center justify-content-center">
-        <p className="text-muted mb-0">Checking session…</p>
-      </div>
-    )
+    return <div className="admin-loading">Checking session…</div>
   }
 
   return <>{children}</>
