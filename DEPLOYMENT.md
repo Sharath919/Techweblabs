@@ -6,7 +6,7 @@ Hybrid Vercel deployment: static PHP-exported service pages + Next.js ISR blogs,
 
 ```bash
 cp .env.example .env.local
-# Fill in Supabase + OpenAI keys
+# Fill in Supabase + Anthropic (Claude) keys
 
 npm install
 npm run copy-assets

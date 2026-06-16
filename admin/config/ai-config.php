@@ -1,11 +1,14 @@
 <?php
 /**
- * AI Configuration
+ * AI Configuration (legacy PHP admin — prefer Next.js + Anthropic on Vercel)
  *
- * Set OPENAI_API_KEY in environment variables — never commit keys to git.
- * Get your API key from: https://platform.openai.com/api-keys
+ * Set ANTHROPIC_API_KEY in environment variables.
  */
 
+define('ANTHROPIC_API_KEY', getenv('ANTHROPIC_API_KEY') ?: '');
+define('ANTHROPIC_MODEL', getenv('ANTHROPIC_MODEL') ?: 'claude-sonnet-4-20250514');
+
+/** @deprecated use ANTHROPIC_API_KEY */
 define('OPENAI_API_KEY', getenv('OPENAI_API_KEY') ?: '');
 define('OPENAI_MODEL', getenv('OPENAI_MODEL') ?: 'gpt-4o-mini');
 
@@ -18,9 +21,15 @@ function isAIConfigured() {
 }
 
 function getAIAPIKey() {
-    return getenv('OPENAI_API_KEY') ?: (defined('OPENAI_API_KEY') ? OPENAI_API_KEY : '');
+    if (getenv('ANTHROPIC_API_KEY')) {
+        return getenv('ANTHROPIC_API_KEY');
+    }
+    return getenv('OPENAI_API_KEY') ?: '';
 }
 
 function getAIModel() {
-    return defined('OPENAI_MODEL') ? OPENAI_MODEL : 'gpt-4o-mini';
+    if (getenv('ANTHROPIC_MODEL')) {
+        return getenv('ANTHROPIC_MODEL');
+    }
+    return getenv('OPENAI_MODEL') ?: 'claude-sonnet-4-20250514';
 }

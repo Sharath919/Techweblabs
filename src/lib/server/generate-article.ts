@@ -1,6 +1,5 @@
-/** TechWebLabs automated blog article pipeline (OpenAI). */
+/** TechWebLabs automated blog article pipeline (Claude / Anthropic). */
 
-import OpenAI from 'openai'
 import { createClient } from '@supabase/supabase-js'
 import {
   getBuiltInArticlePrompt,
@@ -8,6 +7,7 @@ import {
 } from '@/config/articleMachinePrompts'
 import { SITE_URL } from '@/config/site'
 import { isAdminAccessToken, isCronSecretToken } from '@/lib/server/admin-auth'
+import { calculateClaudeCost, callClaude, getAnthropicModel } from '@/lib/server/claude'
 import { estimateReadingTime, parseArticleJson, slugify } from '@/lib/utils'
 
 export const maxDuration = 180
@@ -79,18 +79,16 @@ async function logUsage(
     prompt_key?: string
   },
 ) {
-  const costUsd =
-    (row.input_tokens / 1_000_000) * 0.15 + (row.output_tokens / 1_000_000) * 0.6
   await supabase.from('api_usage_log').insert({
     post_id: row.post_id ?? null,
     schedule_id: row.schedule_id ?? null,
-    provider: 'openai',
+    provider: 'claude',
     model: row.model,
     operation: 'article_generation',
     input_tokens: row.input_tokens,
     output_tokens: row.output_tokens,
     total_tokens: row.input_tokens + row.output_tokens,
-    cost_usd: costUsd,
+    cost_usd: calculateClaudeCost(row.model, row.input_tokens, row.output_tokens),
     duration_ms: row.duration_ms,
     success: row.success,
     error_text: row.error_text ?? null,
@@ -132,11 +130,6 @@ export async function handleGenerateArticle(request: Request): Promise<Response>
     return Response.json({ error: 'topic or card_name is required' }, { status: 400 })
   }
 
-  const openaiKey = (process.env.OPENAI_API_KEY || '').trim()
-  if (!openaiKey) {
-    return Response.json({ error: 'OPENAI_API_KEY not configured' }, { status: 500 })
-  }
-
   if (scheduleId) {
     await supabase
       .from('publishing_schedule')
@@ -145,29 +138,19 @@ export async function handleGenerateArticle(request: Request): Promise<Response>
   }
 
   const { systemPrompt, promptKey } = await resolvePrompt(supabase, templateType)
-  const model = process.env.OPENAI_MODEL || 'gpt-4o-mini'
-  const openai = new OpenAI({ apiKey: openaiKey })
+  const model = getAnthropicModel()
   const start = Date.now()
 
   try {
-    const completion = await openai.chat.completions.create({
-      model,
-      messages: [
-        { role: 'system', content: systemPrompt },
-        {
-          role: 'user',
-          content: `Write an SEO blog article on this topic: "${topic}"${keywords ? `\nTarget keywords: ${keywords}` : ''}`,
-        },
-      ],
-      temperature: 0.7,
-      max_tokens: 8000,
-      response_format: { type: 'json_object' },
+    const claude = await callClaude({
+      systemPrompt: `${systemPrompt}\n\nRespond with ONLY valid JSON. No markdown fences.`,
+      userMessage: `Write an SEO blog article on this topic: "${topic}"${keywords ? `\nTarget keywords: ${keywords}` : ''}`,
+      maxTokens: 8000,
     })
 
-    const raw = completion.choices[0]?.message?.content || ''
-    const parsed = parseArticleJson(raw)
+    const parsed = parseArticleJson(claude.text)
     if (!parsed) {
-      throw new Error('Failed to parse article JSON from OpenAI')
+      throw new Error('Failed to parse article JSON from Claude')
     }
 
     const title = String(parsed.title || topic)
@@ -208,9 +191,9 @@ export async function handleGenerateArticle(request: Request): Promise<Response>
     await logUsage(supabase, {
       post_id: post.id,
       schedule_id: scheduleId,
-      model,
-      input_tokens: completion.usage?.prompt_tokens ?? 0,
-      output_tokens: completion.usage?.completion_tokens ?? 0,
+      model: claude.model,
+      input_tokens: claude.inputTokens,
+      output_tokens: claude.outputTokens,
       duration_ms: durationMs,
       success: true,
       prompt_key: promptKey,
