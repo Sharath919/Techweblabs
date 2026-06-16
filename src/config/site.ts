@@ -31,7 +31,18 @@ export function canonicalFromPathname(pathname: string): string {
   return siteUrl(trimmed || '/')
 }
 
+/** Matches vercel.json publishing crons (UTC, minute 0) — same pattern as Limansa. */
+export const PUBLISHING_CRON_UTC_HOURS = [1, 4, 7, 10, 13, 16, 19] as const
+
 export const PUBLISHING_BATCH_SIZE = 3
+
+export const PUBLISHING_DAILY_TARGET = 10
+
+export const PUBLISHING_CRON_RUNS_PER_DAY = PUBLISHING_CRON_UTC_HOURS.length
+
+/** 7 crons × 3 articles = up to 21/day on Vercel Hobby (Limansa uses same pattern for ~20/day). */
+export const PUBLISHING_THEORETICAL_DAILY_MAX =
+  PUBLISHING_BATCH_SIZE * PUBLISHING_CRON_RUNS_PER_DAY
 
 export const INTERNAL_LINKS = [
   { text: 'Food Delivery App Development', url: '/food-delivery-app-development' },

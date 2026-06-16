@@ -5,14 +5,15 @@ export default function AdminSystemPage() {
       <div className="admin-card mb-3">
         <h2 className="h5">Cron Publishing</h2>
         <p className="small text-muted">
-          On Vercel Hobby, use external cron (cron-job.org or GitHub Actions) to hit:
+          Vercel crons (same as Limansa): 7 runs/day UTC at 01, 04, 07, 10, 13, 16, 19 — batch size 3 per run (up to 21/day).
+          Queue topics in Schedule; each run processes up to 3 pending items.
         </p>
         <code className="d-block p-2 bg-light rounded">
           POST {process.env.NEXT_PUBLIC_SITE_URL || 'https://techweblabs.com'}/api/cron/publishing
           <br />
           Authorization: Bearer CRON_SECRET
         </code>
-        <p className="small mt-2">Recommended: every 3 hours (batch size 3 ≈ 8-12 posts/day)</p>
+        <p className="small mt-2">Target: 10/day — queue 10 topics; crons spread publishing across the day.</p>
       </div>
       <div className="admin-card mb-3">
         <h2 className="h5">Vercel Setup</h2>

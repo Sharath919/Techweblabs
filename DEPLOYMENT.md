@@ -44,14 +44,13 @@ npm run build:full
 
 ## Cron (10 blogs/day on Vercel Hobby)
 
-Vercel Hobby cron runs once daily. For 10/day, use **external cron**:
+Same pattern as Limansa: **7 Vercel crons/day × batch of 3 = up to 21/day** (configured in `vercel.json` at UTC 01, 04, 07, 10, 13, 16, 19).
 
-```
-POST https://techweblabs.com/api/cron/publishing
-Authorization: Bearer YOUR_CRON_SECRET
-```
+Queue **10 topics** in `/admin/schedule` for the day — each cron run processes up to 3 pending items until the queue is empty.
 
-Schedule every 3 hours via cron-job.org or GitHub Actions (batch size: 3).
+Set `CRON_SECRET` in Vercel env vars. Vercel cron calls `/api/cron/publishing` automatically.
+
+Optional backup: GitHub Actions workflow in `.github/workflows/cron-publishing.yml` if you want a redundant trigger.
 
 ## Vercel Deployment
 
