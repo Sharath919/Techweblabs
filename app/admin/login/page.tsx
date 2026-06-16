@@ -1,9 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { createBrowserSupabase } from '@/lib/supabase'
 
-export default function AdminLoginPage() {
+function AdminLoginForm() {
+  const searchParams = useSearchParams()
+  const unauthorized = searchParams.get('error') === 'unauthorized'
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -27,6 +30,9 @@ export default function AdminLoginPage() {
     <div className="admin-shell d-flex align-items-center justify-content-center">
       <div className="admin-card" style={{ width: 400, maxWidth: '90vw' }}>
         <h1 className="h4 mb-4">TechWebLabs Admin</h1>
+        {unauthorized && (
+          <p className="text-danger small">Your account is not authorized for admin access.</p>
+        )}
         <form onSubmit={handleLogin}>
           <div className="mb-3">
             <label className="form-label">Email</label>
@@ -55,5 +61,13 @@ export default function AdminLoginPage() {
         </form>
       </div>
     </div>
+  )
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={<div className="admin-shell d-flex align-items-center justify-content-center">Loading…</div>}>
+      <AdminLoginForm />
+    </Suspense>
   )
 }

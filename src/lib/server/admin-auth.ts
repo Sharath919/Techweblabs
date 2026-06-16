@@ -1,10 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-
-const BOOTSTRAP_ADMIN_EMAILS = [
-  'admin@techweblabs.com',
-  'sharathchand19141@gmail.com',
-  'sharathbroyt@gmail.com',
-]
+import { isBootstrapAdminEmail } from '@/config/admin'
 
 export async function isAdminAccessToken(
   supabase: ReturnType<typeof createClient>,
@@ -13,8 +8,7 @@ export async function isAdminAccessToken(
   const { data: userData, error } = await supabase.auth.getUser(accessToken)
   if (error || !userData.user) return false
 
-  const email = userData.user.email?.toLowerCase().trim()
-  if (email && BOOTSTRAP_ADMIN_EMAILS.includes(email)) return true
+  if (isBootstrapAdminEmail(userData.user.email)) return true
 
   const { data } = await supabase
     .from('admin_users')

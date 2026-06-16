@@ -1,7 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { AdminAuthGuard } from '@/components/admin/AdminAuthGuard'
+import { createBrowserSupabase } from '@/lib/supabase'
 
 const NAV = [
   { href: '/admin', label: 'Dashboard' },
@@ -14,29 +16,41 @@ const NAV = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const router = useRouter()
 
   if (pathname === '/admin/login') {
     return <>{children}</>
   }
 
+  async function signOut() {
+    const supabase = createBrowserSupabase()
+    await supabase.auth.signOut()
+    router.replace('/admin/login')
+  }
+
   return (
-    <div className="admin-shell">
-      <nav className="admin-nav d-flex align-items-center flex-wrap">
-        <strong className="me-4">TechWebLabs Admin</strong>
-        {NAV.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            style={{ fontWeight: pathname === item.href ? 700 : 400 }}
-          >
-            {item.label}
+    <AdminAuthGuard>
+      <div className="admin-shell">
+        <nav className="admin-nav d-flex align-items-center flex-wrap">
+          <strong className="me-4">TechWebLabs Admin</strong>
+          {NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              style={{ fontWeight: pathname === item.href ? 700 : 400 }}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/" className="ms-auto me-3">
+            View Site →
           </Link>
-        ))}
-        <Link href="/" className="ms-auto">
-          View Site →
-        </Link>
-      </nav>
-      <main className="container py-4">{children}</main>
-    </div>
+          <button type="button" className="btn btn-sm btn-outline-secondary" onClick={signOut}>
+            Sign out
+          </button>
+        </nav>
+        <main className="container py-4">{children}</main>
+      </div>
+    </AdminAuthGuard>
   )
 }
