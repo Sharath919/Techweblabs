@@ -12,7 +12,7 @@ if (!defined('ADMIN_PANEL')) {
 // Database Configuration
 define('DB_HOST', 'localhost');
 define('DB_USER', 'techweb_user');
-define('DB_PASS', 'techweb#@1q2w'); // Update with your MySQL password
+define('DB_PASS', getenv('DB_PASS') ?: ''); // Set via environment variable
 define('DB_NAME', 'techweb_blog'); // Update with your database name
 define('DB_CHARSET', 'utf8mb4');
 
