@@ -7,11 +7,12 @@
   },
   "scripts": {
     "dev": "npm run copy-assets && next dev",
-    "build": "npm run copy-assets && npm run sitemap && next build",
+    "build": "npm run copy-assets && npm run fetch-static && npm run sitemap && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "copy-assets": "tsx scripts/copy-legacy-assets.ts",
+    "fetch-static": "tsx scripts/fetch-production-static.ts",
     "export-static": "tsx scripts/export-static-pages.ts",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "migrate:mysql": "tsx scripts/migrate-mysql-to-supabase.ts",
