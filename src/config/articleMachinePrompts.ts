@@ -62,3 +62,64 @@ Write a cost and pricing guide article. Include realistic price ranges for the I
 export function templateTypeToPromptKey(templateType: string): string {
   return `article_machine_prompt_${templateType.trim().replace(/-/g, '_')}`
 }
+
+export type ArticleMachinePromptTab = {
+  id: string
+  configKey: string
+  tabLabel: string
+  label: string
+  saveLabel: string
+  templateType: string | null
+  testTemplateType: string
+}
+
+export const ARTICLE_MACHINE_PROMPT_TABS: ArticleMachinePromptTab[] = [
+  {
+    id: 'default',
+    configKey: 'article_machine_prompt_default',
+    tabLabel: 'Default',
+    label: 'Default (fallback for all templates)',
+    saveLabel: 'Default',
+    templateType: null,
+    testTemplateType: 'seo-blog',
+  },
+  {
+    id: 'seo-blog',
+    configKey: 'article_machine_prompt_seo_blog',
+    tabLabel: 'SEO Blog',
+    label: 'SEO Blog Article',
+    saveLabel: 'SEO Blog',
+    templateType: 'seo-blog',
+    testTemplateType: 'seo-blog',
+  },
+  {
+    id: 'comparison',
+    configKey: 'article_machine_prompt_comparison',
+    tabLabel: 'Comparison',
+    label: 'Technology Comparison',
+    saveLabel: 'Comparison',
+    templateType: 'comparison',
+    testTemplateType: 'comparison',
+  },
+  {
+    id: 'cost-guide',
+    configKey: 'article_machine_prompt_cost_guide',
+    tabLabel: 'Cost Guide',
+    label: 'Cost & Pricing Guide',
+    saveLabel: 'Cost Guide',
+    templateType: 'cost-guide',
+    testTemplateType: 'cost-guide',
+  },
+]
+
+export function estimatePromptTokens(text: string): number {
+  return Math.ceil(text.length / 4)
+}
+
+export function countTemplatesUsingDefault(prompts: Record<string, string>): number {
+  const defaultText = prompts.article_machine_prompt_default?.trim()
+  if (!defaultText) return 0
+  return ARTICLE_MACHINE_PROMPT_TABS.filter(
+    (t) => t.templateType && !(prompts[t.configKey]?.trim()),
+  ).length
+}

@@ -35,5 +35,7 @@ export const ADMIN_PAGE_TITLES: Record<string, string> = {
 }
 
 export function adminPageTitle(pathname: string): string {
+  if (pathname === '/admin/articles/new') return 'New Article'
+  if (pathname.match(/^\/admin\/articles\/[^/]+\/edit$/)) return 'Edit Article'
   return ADMIN_PAGE_TITLES[pathname] ?? 'Admin'
 }
