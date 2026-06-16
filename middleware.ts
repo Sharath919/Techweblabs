@@ -22,6 +22,7 @@ const RESERVED = new Set([
   'sitemap.xml',
   'sitemap-pages.xml',
   'sitemap-posts.xml',
+  'sitemap.xsl',
   'robots.txt',
 ])
 
