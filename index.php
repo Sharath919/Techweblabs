@@ -59,10 +59,10 @@ require_once(__DIR__ . '/config.php');
 			"description": "TechWebLabs is a leading mobile app and web development company in Hyderabad, India. We provide custom app development, web solutions, AI software development, and digital transformation services for startups and enterprises worldwide.",
 			"address": {
 				"@type": "PostalAddress",
-				"streetAddress": "Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society",
-				"addressLocality": "Madhapur",
-				"addressRegion": "Hyderabad",
-				"postalCode": "500081",
+				"streetAddress": "<?php echo COMPANY_STREET_ADDRESS; ?>",
+				"addressLocality": "<?php echo COMPANY_ADDRESS_LOCALITY; ?>",
+				"addressRegion": "<?php echo COMPANY_ADDRESS_REGION; ?>",
+				"postalCode": "<?php echo COMPANY_POSTAL_CODE; ?>",
 				"addressCountry": "IN"
 			},
 			"contactPoint": {
@@ -157,7 +157,7 @@ require_once(__DIR__ . '/config.php');
 					"name": "Where is TechWebLabs located?",
 					"acceptedAnswer": {
 						"@type": "Answer",
-						"text": "TechWebLabs is headquartered in Hyderabad, India, and serves clients worldwide. Our office is located at Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society, Madhapur, Hyderabad - 500081."
+						"text": "TechWebLabs is headquartered in Hyderabad, India, and serves clients worldwide. Our office is located at <?php echo COMPANY_ADDRESS; ?>."
 					}
 				},
 				{

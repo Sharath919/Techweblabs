@@ -17,6 +17,25 @@ const PERSONA_SNIPPET = `
 
 const BATCH_SIZE = 8
 
+const COMPANY_ADDRESS =
+  'Sy No 83/1, T-Hub, Plot No 1/C, Panmaktha Knowledge City Rd, Timber Lake Colony, Prashant Hills, Gachibowli, Rai Durg, Hyderabad, Telangana 500032'
+
+const LEGACY_ADDRESS_SNIPPETS = [
+  'Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society, Madhapur, HYderabad, 500081',
+  'Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society, Madhapur, Hyderabad - 500081',
+  'Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society, Madhapur,\n\t\t\t\t\t\t\t\t\t\tHYderabad, 500081',
+  'Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society, Madhapur,\n\t\t\t\t\t\t\t\t\tHYderabad, 500081',
+  'Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society',
+]
+
+function patchLegacyAddress(html: string): string {
+  let result = html
+  for (const legacy of LEGACY_ADDRESS_SNIPPETS) {
+    result = result.replaceAll(legacy, COMPANY_ADDRESS)
+  }
+  return result
+}
+
 function injectPersona(html: string): string {
   if (html.includes('twl-persona-root')) return html
   if (html.includes('</body>')) {
@@ -88,6 +107,8 @@ async function main() {
     if (file === 'index.html') {
       html = injectPersona(html)
     }
+
+    html = patchLegacyAddress(html)
 
     writeFileSync(join(STATIC_DIR, file), html, 'utf8')
     exported++

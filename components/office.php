@@ -1,3 +1,8 @@
+<?php
+if (!defined('COMPANY_ADDRESS')) {
+    require_once dirname(__DIR__) . '/config.php';
+}
+?>
 <section class="our-office pad-tb">
 			<div class="container">
 				<div class="row justify-content-center">
@@ -20,8 +25,7 @@
 							<div class="info-text-div">
 								<h4>Hyderabad, India</h4>
 								<h6 class="mt10">Registered Office</h6>
-								<p>Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society, Madhapur,
-									HYderabad, 500081</p>
+								<p><?php echo COMPANY_ADDRESS; ?></p>
 								<ul class="-address-list mt10">
 									<li><a
 											href><i

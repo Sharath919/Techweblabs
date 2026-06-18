@@ -8,6 +8,8 @@ if (!defined('ROOT_DIR')) {
     define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/');
 }
 
+require_once ROOT_DIR . 'config.php';
+
 /**
  * Get Organization Schema
  */
@@ -23,10 +25,10 @@ function getOrganizationSchema() {
         "foundingDate" => "2015",
         "address" => [
             "@type" => "PostalAddress",
-            "streetAddress" => "Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society",
-            "addressLocality" => "Madhapur",
-            "addressRegion" => "Hyderabad",
-            "postalCode" => "500081",
+            "streetAddress" => COMPANY_STREET_ADDRESS,
+            "addressLocality" => COMPANY_ADDRESS_LOCALITY,
+            "addressRegion" => COMPANY_ADDRESS_REGION,
+            "postalCode" => COMPANY_POSTAL_CODE,
             "addressCountry" => "IN"
         ],
         "contactPoint" => [
@@ -171,10 +173,10 @@ function getLocalBusinessSchema() {
         "email" => "info@techweblabs.com",
         "address" => [
             "@type" => "PostalAddress",
-            "streetAddress" => "Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society",
-            "addressLocality" => "Madhapur",
-            "addressRegion" => "Hyderabad",
-            "postalCode" => "500081",
+            "streetAddress" => COMPANY_STREET_ADDRESS,
+            "addressLocality" => COMPANY_ADDRESS_LOCALITY,
+            "addressRegion" => COMPANY_ADDRESS_REGION,
+            "postalCode" => COMPANY_POSTAL_CODE,
             "addressCountry" => "IN"
         ],
         "geo" => [

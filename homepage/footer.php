@@ -1,3 +1,8 @@
+<?php
+if (!defined('COMPANY_ADDRESS')) {
+    require_once dirname(__DIR__) . '/config.php';
+}
+?>
 <footer>
 			<!-- <div class="footer-row1">
 				<div class="container">
@@ -129,7 +134,7 @@
 							</li>
 							<li>
 								<span><i class="fas fa-map-marker-alt"></i></span>
-								<p>Address <span> Sy No 83/1, T-Hub, Plot No 1/C, Panmaktha Knowledge City Rd, Timber Lake Colony, Prashant Hills, Gachibowli, Rai Durg, Hyderabad, Telangana 500032</span></p>
+								<p>Address <span> <?php echo COMPANY_ADDRESS; ?></span></p>
 							</li>
 						</ul>
 					</div>
