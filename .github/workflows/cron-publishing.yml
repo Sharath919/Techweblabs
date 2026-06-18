@@ -1,0 +1,17 @@
+name: Cron Publishing
+
+on:
+  schedule:
+    # Optional backup trigger — primary publishing uses 7 Vercel crons (Limansa pattern)
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger publishing cron
+        run: |
+          curl -sf -X POST "${{ secrets.SITE_URL }}/api/cron/publishing" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json"

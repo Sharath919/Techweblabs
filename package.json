@@ -1,0 +1,44 @@
+{
+  "name": "techweblabs",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "npm run copy-assets && next dev",
+    "build": "npm run copy-assets && npm run fetch-static && npm run sitemap && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "copy-assets": "tsx scripts/copy-legacy-assets.ts",
+    "fetch-static": "tsx scripts/fetch-production-static.ts",
+    "export-static": "tsx scripts/export-static-pages.ts",
+    "sitemap": "tsx scripts/generate-sitemap.ts",
+    "migrate:mysql": "tsx scripts/migrate-mysql-to-supabase.ts",
+    "cron:publishing": "tsx scripts/run-cron-publishing.ts",
+    "build:full": "npm run export-static && npm run build"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.106.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.511.0",
+    "next": "^15.5.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.5.0",
+    "zod": "^3.25.76"
+  },
+  "optionalDependencies": {
+    "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^24.12.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.2.1",
+    "tsx": "^4.22.3",
+    "typescript": "~5.9.3"
+  }
+}

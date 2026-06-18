@@ -1,3 +1,8 @@
+<?php
+if (!defined('COMPANY_ADDRESS')) {
+    require_once dirname(__DIR__) . '/config.php';
+}
+?>
 <footer>
 			<!-- <div class="footer-row1">
 				<div class="container">
@@ -129,7 +134,7 @@
 							</li>
 							<li>
 								<span><i class="fas fa-map-marker-alt"></i></span>
-								<p>Address <span> Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society, Madhapur, HYderabad, 500081</span></p>
+								<p>Address <span> <?php echo COMPANY_ADDRESS; ?></span></p>
 							</li>
 						</ul>
 					</div>
