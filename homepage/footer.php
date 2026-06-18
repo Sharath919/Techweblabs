@@ -129,7 +129,7 @@
 							</li>
 							<li>
 								<span><i class="fas fa-map-marker-alt"></i></span>
-								<p>Address <span> Flat no 102, Plot no 1208, Spline Arcade, Ayyappa Society, Madhapur, HYderabad, 500081</span></p>
+								<p>Address <span> Sy No 83/1, T-Hub, Plot No 1/C, Panmaktha Knowledge City Rd, Timber Lake Colony, Prashant Hills, Gachibowli, Rai Durg, Hyderabad, Telangana 500032</span></p>
 							</li>
 						</ul>
 					</div>
